@@ -67,7 +67,7 @@
                       </ul>
                     </div>
                     <div class="card-body">
-                        <img src="img/pej2023.jpg" alt="">
+                        <img src="img/logo_injuventud_01.png" width="20%">
                         <div class="container">
                             <h5 class="card-title"><i class="bi bi-person-fill-add"></i> Formulario de asistentes</h5>
                             <p class="card-text">Se va a generar un QR como invitación para los asistentes.</p>
@@ -76,32 +76,46 @@
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
                                     <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" id="name">
                                 </div>
+                                <div id="result-username" class="text-start mb-1"></div>
+
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-regex"></i></span>
-                                    <input type="text" class="form-control" placeholder="CURP" aria-label="Username" aria-describedby="basic-addon1" id="curp" >
+                                    <input type="text" class="form-control" placeholder="CURP" aria-label="Username" aria-describedby="basic-addon1" onchange="validarInput(this);" id="curp" >
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope"></i></span>
                                     <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" id="email">
                                 </div>
                             </div>
+                          </label>
+                          <div id="botones">
+                            <button type="button" class="btn btn-warning" onclick="nuevoAsistente()" id="nuevoBtn">
+                              <i class="bi bi-person-plus"></i> 
+                              Nuevo registro
+                            </button>
                             <button type="button" class="btn btn-primary" onclick="saveAsistente()" id="registroBtn">
                               <i class="bi bi-person-plus"></i> 
                               Registrarse
                             </button>
-
-                            <div class="mx-auto d-block" style="width: 100%;" id="qr">
-                            </div>
+                          </div>
+                          <div class="container-fluid mt-5">
+                            <label class="m-auto" id="qr">
+                          </div>
+                          
 
                          </div><!-- container -->
                          <div class="container-fluid mt-3 responsive" id="buscarCURP" hidden>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
-                                <input type="text" class="form-control" placeholder="CURP" aria-label="Username" aria-describedby="basic-addon1" id="curpSearch" oninput="valiarCURP(this.value)">
+                                <input type="text" class="form-control" placeholder="CURP" aria-label="Username" aria-describedby="basic-addon1" id="curpSearch">
                             </div>
-                            <a type="button" class="btn btn-primary" onclick="buscarCURP()"><i class="bi bi-search"></i> Buscar</a>
+                            <a type="button" class="btn btn-primary" id="btnCURP"><i class="bi bi-search"></i> Buscar</a>
                          </div>
-                    
+
+                         <div class="container-fluid mt-5">
+                          <label class="m-auto" id="qr2">
+                        </div>
+
                     </div>
                 </div>
                 
@@ -133,15 +147,20 @@
                     document.getElementById('registroBtn').disabled=true;
                     Swal.fire({
                         icon: 'success',
-                        imageUrl: 'img/pej2023.jpg',
+                        imageUrl: 'img/logo_injuventud_01.png',
                         imageHeight: 200,
                         imageAlt: 'INJUVENTUD',
                         title: 'Asistente guadado',
-                        text: 'Copia tu QR para utilizarlo el día del evento',
+                        html: 'Copia tu QR para utilizarlo el día del evento',
                         confirmButtonColor: '#3085d6',
                         footer: 'INJUVENTUD'
                     }); 
                     generarQR();
+                    document.getElementById('name').disabled=true;
+                    document.getElementById('curp').disabled=true;
+                    document.getElementById('email').disabled=true;
+                    document.getElementById('curpSearch').disabled=true;
+
                     }
                     else if (verificador = 0){
                         Swal.fire({
@@ -158,32 +177,56 @@
 function noHidden(){
   document.getElementById('buscarCURP').hidden=false;
   document.getElementById('formulario').hidden=true;
-
- 
-
+  document.getElementById('botones').hidden=true;
+  
   document.getElementById('btnUno').setAttribute('class','nav-link');
   document.getElementById('btnDos').setAttribute('class','nav-link active');
-
-
+  
+  document.getElementById('qr').innerHTML="";
+  document.getElementById('name').value="";
+  document.getElementById('curp').value="";
+  document.getElementById('email').value="";
+  document.getElementById('curpSearch').value="";
+  
+  
 }
+
 function hiddenF(){
   document.getElementById('buscarCURP').hidden=true;
   document.getElementById('formulario').hidden=false;
+  document.getElementById('botones').hidden=false;
 
   document.getElementById('btnUno').setAttribute('class','nav-link active');
   document.getElementById('btnDos').setAttribute('class','nav-link');
+  
+  document.getElementById('qr').innerHTML="";
+  document.getElementById('name').value="";
+  document.getElementById('curp').value="";
+  document.getElementById('email').value="";
+  document.getElementById('curpSearch').value="";
+
+}
+
+function nuevoAsistente(){
+
+  
+  document.getElementById('qr').innerHTML="";
+  document.getElementById('name').value="";
+  document.getElementById('curp').value="";
+  document.getElementById('email').value="";
+  document.getElementById('curpSearch').value="";
+
+  document.getElementById('name').disabled=false;
+  document.getElementById('curp').disabled=false;
+  document.getElementById('email').disabled=false;
+  document.getElementById('curpSearch').disabled=false;
 
 }
 
 // function cargarPag(){
 
 // }
-// function valiarCURP(){
 
-// }
-// function valiarCURP(){
-
-// }
 // function buscarCURP(){
 
 // }
@@ -200,4 +243,111 @@ var qrcode = new QRCode(document.getElementById("qr"), {
       correctLevel: QRCode.CorrectLevel.H
     });
 }
+
+//   VALIDACIÓN CURP
+function validarInput(input) {
+        var curp = input.value.toUpperCase(),
+            resultado = document.getElementById("result-username"),
+            valido = "No válido";
+
+        if (curpValida(curp)) {
+            alert('CURP Válido');
+            document.getElementById('registroBtn').disabled=false;
+
+        } else {
+            alert('CURP No Válido');
+            document.getElementById('registroBtn').disabled=true;
+
+        }
+    }
+    function curpValida(curp) {
+        var re = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0\d|1[0-2])(?:[0-2]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
+            validado = curp.match(re);
+        
+        if (!validado)  //Coincide con el formato general?
+            return false;
+        
+        //Validar que coincida el dígito verificador
+        function digitoVerificador(curp17) {
+            //Fuente https://consultas.curp.gob.mx/CurpSP/
+            var diccionario  = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
+                lngSuma      = 0.0,
+                lngDigito    = 0.0;
+            for(var i=0; i<17; i++)
+                lngSuma= lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i);
+            lngDigito = 10 - lngSuma % 10;
+            if(lngDigito == 10)
+                return 0;
+            return lngDigito;
+        }
+        if (validado[2] != digitoVerificador(validado[1])) 
+            return false;
+            
+        return true; //Validado
+    }
+
+    // VALIDA USUARIO REGISTRADO
+ 
+$(document).ready(function() {	
+    $('#curp').on('blur', function() {
+        // $('#result-username2').html('<img src="img/loader.gif" />').fadeOut(1000);
+
+        var username = $(this).val();		
+        var dataString = 'username='+username;
+
+        $.ajax({
+            type: "POST",
+            url: "verificacion.php",
+            data: dataString,
+            success: function(data) {
+                $('#result-username').fadeIn(1000).html(data);
+                document.getElementById('registroBtn').disabled=true;
+
+            }
+        });
+    });              
+});  
+$(document).ready(function() {	
+    $('#btnCURP').on('click', function() {
+        // $('#result-username2').html('<img src="img/loader.gif" />').fadeOut(1000);
+
+        // var username = $(this).val();		
+        var username = document.getElementById('curpSearch').value;		
+        var dataString = 'username='+username;
+
+        $.ajax({
+            type: "POST",
+            url: "verificacion2.php",
+            dataType:"json",
+            data: dataString,
+            success: function(data) {
+              var jsonData = JSON.parse(JSON.stringify(data));
+              var verificador = jsonData.success;
+
+              if (verificador == 1){
+
+                var texto = jsonData.curp;
+
+                var qrcode = new QRCode(document.getElementById("qr2"), {
+                      text: texto,
+                      width: 300,
+                      height: 300,
+                      correctLevel: QRCode.CorrectLevel.H
+                    });
+
+                }
+              else if (verificador == 0){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'No existe el invitado',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+
+            }
+        });
+    });              
+});  
 </script>
