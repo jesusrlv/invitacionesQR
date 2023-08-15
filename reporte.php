@@ -1,7 +1,7 @@
 <?php
     header("Pragma: public");
     header("Expires: 0");
-    $filename = "reporte_datos_personales.xls";
+    $filename = "reporte_invitaciones.xls";
     header("Content-type: application/x-msdownload");
     header("Content-Disposition: attachment; filename=$filename");
     header("Pragma: no-cache");
@@ -17,6 +17,7 @@
             <th>#</th>
             <th>Nombre</th>
             <th>CURP</th>
+            <th>Teléfono</th>
             <th>email</th>
         </tr>
     ';
@@ -28,6 +29,7 @@
             <td>'.$x.'</td>
             <td>'.$rowSQL['nombre'].'</td>
             <td>'.$rowSQL['curp'].'</td>
+            <td>'.$rowSQL['telefono'].'</td>
             <td>'.$rowSQL['email'].'</td>
         </tr>
         ';
