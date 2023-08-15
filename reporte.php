@@ -28,8 +28,8 @@
         echo '
         <tr>
             <td>'.$x.'</td>
-            <td>'.$rowSQL['nombre'].'</td>
-            <td>'.$rowSQL['curp'].'</td>
+            <td>'.strtoupper($rowSQL['nombre']).'</td>
+            <td>'.strtoupper($rowSQL['curp']).'</td>
             <td>'.$rowSQL['telefono'].'</td>
             <td>'.$rowSQL['email'].'</td>
         </tr>
