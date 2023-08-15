@@ -28,7 +28,7 @@
         echo '
         <tr>
             <td>'.$x.'</td>
-            <td>'.ucfirst($rowSQL['nombre']).'</td>
+            <td>'.utf8_decode($rowSQL['nombre']).'</td>
             <td>'.strtoupper($rowSQL['curp']).'</td>
             <td>'.$rowSQL['telefono'].'</td>
             <td>'.$rowSQL['email'].'</td>
