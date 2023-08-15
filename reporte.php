@@ -3,6 +3,7 @@
     header("Expires: 0");
     $filename = "reporte_invitaciones.xls";
     header("Content-type: application/x-msdownload");
+    header('Content-Type: text/html; charset=UTF-8');
     header("Content-Disposition: attachment; filename=$filename");
     header("Pragma: no-cache");
     header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -27,7 +28,7 @@
         echo '
         <tr>
             <td>'.$x.'</td>
-            <td>'.utf8_encode($rowSQL['nombre']).'</td>
+            <td>'.$rowSQL['nombre'].'</td>
             <td>'.$rowSQL['curp'].'</td>
             <td>'.$rowSQL['telefono'].'</td>
             <td>'.$rowSQL['email'].'</td>
