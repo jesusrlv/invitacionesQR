@@ -27,7 +27,7 @@
         echo '
         <tr>
             <td>'.$x.'</td>
-            <td>'.utf8_decode($rowSQL['nombre']).'</td>
+            <td>'.utf8_encode($rowSQL['nombre']).'</td>
             <td>'.$rowSQL['curp'].'</td>
             <td>'.$rowSQL['telefono'].'</td>
             <td>'.$rowSQL['email'].'</td>
