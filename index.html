@@ -83,6 +83,10 @@
                                     <input type="text" class="form-control" placeholder="CURP" aria-label="Username" aria-describedby="basic-addon1" onchange="validarInput(this);" id="curp" >
                                 </div>
                                 <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-telephone-fill"></i></span>
+                                    <input type="text" class="form-control" placeholder="Teléfono" aria-label="Username" aria-describedby="basic-addon1" onchange="validarInput(this);" id="telefono" >
+                                </div>
+                                <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope"></i></span>
                                     <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" id="email">
                                 </div>
@@ -129,6 +133,7 @@
         var nombre = document.getElementById('name').value;
         var curp = document.getElementById('curp').value;
         var email = document.getElementById('email').value;
+        var email = document.getElementById('telefono').value;
 
         $.ajax({
             type:"POST",
@@ -136,6 +141,7 @@
             data:{
                 nombre:nombre,
                 curp:curp,
+                telefono:telefono,
                 email:email
             },
             dataType: "json",
@@ -158,6 +164,7 @@
                     generarQR();
                     document.getElementById('name').disabled=true;
                     document.getElementById('curp').disabled=true;
+                    document.getElementById('telefono').disabled=true;
                     document.getElementById('email').disabled=true;
                     document.getElementById('curpSearch').disabled=true;
 
@@ -301,7 +308,7 @@ $(document).ready(function() {
             data: dataString,
             success: function(data) {
                 $('#result-username').fadeIn(1000).html(data);
-                document.getElementById('registroBtn').disabled=true;
+                // document.getElementById('registroBtn').disabled=true;
 
             }
         });

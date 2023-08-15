@@ -4,14 +4,17 @@
     $nombre = $_POST['nombre'];
     $curp = $_POST['curp'];
     $email = $_POST['email'];
+    $telefono = $_POST['telefono'];
 
     $sql = "INSERT INTO invitacion (
         nombre,
         curp,
+        telefono,
         email) 
         VALUES (
             '$nombre',
             '$curp',
+            '$telefono',
             '$email'
         )";
     $resultado = $conn->query($sql);
