@@ -19,10 +19,10 @@
         )";
     $resultado = $conn->query($sql);
     
-    if($$result->num_rows > 0){
+    if($resultado){
         echo json_encode(array('success'=>1));
     }
-    else if($$result->num_rows = 0){
+    else{
         echo json_encode(array('success'=>0));
     }
 ?>
