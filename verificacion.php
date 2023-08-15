@@ -1,23 +1,19 @@
 <?php 
 require('conn.php');
-sleep(1);
-if (isset($_POST)) {
-    $username = (string)$_POST['username'];
- 
+    $curp = $_POST['curp'];
     $result = $conn->query(
-        "SELECT * FROM invitacion WHERE curp = '$username'"
+        "SELECT * FROM invitacion WHERE curp = '$curp'"
     );
     
     if ($result->num_rows > 0) {
-        echo '
-        <span><small class="text-danger">Usuario registrado anteriormente </small><span>
-        ';
+        echo json_encode(array(
+            'success' => 1
+        ));
 
     } else {
-        echo '
-        <span><small class="text-primary">Usuario válido</small><span>
-        ';
+        echo json_encode(array(
+            'success' => 0
+        ));
     }
-}
 
 ?>
