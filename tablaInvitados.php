@@ -12,8 +12,8 @@
             <td>'.strtoupper($rowSQL['curp']).'</td>
             <td>'.$rowSQL['telefono'].'</td>
             <td>'.$rowSQL['email'].'</td>
-            <td><a onclick= "editarDatos('.$rowSQL['id'].')" type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarInformacion"><small><i class="bi bi-pencil-square"></i> Editar</small></a></td>
-            <td><a onclick= "eliminarRegistro('.$rowSQL['id'].')" type="button" class="btn btn-danger btn-sm"><small><i class="bi bi-trash3"></i> Eliminar</small></a></td>
+            <td><a type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editarInformacion" onclick="editarDatos('.$rowSQL['id'].')"><small><i class="bi bi-pencil-square"></i> Editar</small></a></td>
+            <td><a onclick="eliminarRegistro('.$rowSQL['id'].')" type="button" class="btn btn-danger btn-sm"><small><i class="bi bi-trash3"></i> Eliminar</small></a></td>
             
         </tr>';
 	}
