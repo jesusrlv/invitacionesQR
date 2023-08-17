@@ -187,7 +187,73 @@ function eliminarRegistro(reg){
 
 }
 
-function editarDatos(){
-    
+function editarDatos(id){
+  $.ajax({
+            type:"POST",
+            url:"queryEditar.php",
+            data:{
+                id:id
+            },
+            dataType: "json",
+            success: function(data) {
+                var jsonData = JSON.parse(JSON.stringify(data));
+                var nombre = jsonData.nombre;
+                var curp = jsonData.curp;
+                var email = jsonData.email;
+                var telefono = jsonData.telefono;
+                var id = jsonData.id;
+
+                document.getElementById('nombre').value = nombre;
+                document.getElementById('curp').value = curp;
+                document.getElementById('email').value = email;
+                document.getElementById('telefono').value = telefono;
+                document.getElementById('id').value = id;
+                console.log("datos");
+
+                
+              }               
+            });
 }
 </script>
+
+<!-- modal -->
+
+<div class="modal fade" id="editarInformacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar información</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <input type="text" name="" id="id">
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-circle"></i></span>
+          <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" id="nombre">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-regex"></i></span>
+          <input type="text" class="form-control" placeholder="CURP" aria-label="Username" aria-describedby="basic-addon1" id="curp">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-fill"></i></span>
+          <input type="text" class="form-control" placeholder="email" aria-label="Username" aria-describedby="basic-addon1" id="email">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"><i class="bi bi-telephone-fill"></i></span>
+          <input type="text" class="form-control" placeholder="Teléfono" aria-label="Username" aria-describedby="basic-addon1" id="telefono">
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
