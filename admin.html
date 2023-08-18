@@ -11,9 +11,11 @@
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
   <script src="QR/ajax_generate_code.js"></script>
+  <script src="script.js"></script>
 
   <title>Formulario de Registro | PEJ2023</title>
 
@@ -93,7 +95,7 @@
       </div>
       <div class="modal-body">
         
-        <input type="text" name="" id="id">
+        <input type="text" name="" id="id" hidden>
 
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-circle"></i></span>
@@ -117,72 +119,12 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="guardarEditar()">Guardar cambios</button>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-  // function editarDatos(id){
-    // var id = id2;
-    // $.ajax({
-    //   type:"POST",
-    //   url:"queryEditar.php",
-    //   data:{
-    //     id:id
-    //   },
-    //   dataType: "JSON",
-    //   success: function(data) {
-    //               var jsonData = JSON.parse(JSON.stringify(data));
-    //               var nombre = jsonData.nombre;
-    //               var curp = jsonData.curp;
-    //               var email = jsonData.email;
-    //               // var telefono = jsonData.telefono;
-    //               var success = jsonData.success;
-                 
-  
-    //               if(success == 1){
-    //                 document.getElementById("nombre").value = nombre;
-    //                 document.getElementById("curp").value = curp;
-    //                 document.getElementById("email").value = email;
-    //                 document.getElementById("telefono").value = telefono;
-    //                 document.getElementById("id").value = id;
-    //               }
-    //               else{
-    //                 document.getElementById("nombre").value = "Sin datos";
-    //                 document.getElementById("curp").value = "Sin datos";
-    //                 document.getElementById("email").value = "Sin datos";
-    //                 document.getElementById("telefono").value = "Sin datos";
-    //                 document.getElementById("id").value = "Sin datos";
-    //               }
-    //               // console.log("Hecho");
-    //             }               
-    //           });
-  
-          //     $.ajax({
-          //     type:"POST",
-          //     url:"queryEditar.php",
-          //     data:{
-          //       id:id
-          //     },
-          //     dataType: "JSON",
-          //     success: function(data) {
-          //         var jsonData = JSON.parse(JSON.stringify(data));
-          //         var verificador = jsonData.success;
-  
-          //       if (verificador == 1){
-          //         console.log('Registro exitoso');
-          //       }
-          //       else{
-          //         console.log('No se registró');
-          //       }
-  
-          //     }               
-          // });
-  // }
-  </script>
 
 <script>
     function saveAsistente(){
@@ -288,33 +230,6 @@ function eliminarRegistro(reg){
         });
 
 }
-function editarDatos(id){
-     $.ajax({
-            type:"POST",
-            url:"queryEditar.php",
-            data:{
-                id:id
-            },
-            dataType: "JSON",
-            success: function(data) {
-                var jsonData = JSON.parse(JSON.stringify(data));
-                var verificador = jsonData.success;
 
-              if (verificador == 1){
-                console.log('Registro eliminado');
-                
-              }
-              else{
-                console.log('No se eliminó el registro');
-              }
-
-            }               
-        });
-
-}
 
 </script>
-
-
-
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->

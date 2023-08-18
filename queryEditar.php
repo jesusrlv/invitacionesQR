@@ -1,4 +1,5 @@
 <?php
+// cmd + D es para seleccionar varios del mismo y escribir
 	require('conn.php');
     $id = $_POST['id'];
     $sql = "SELECT * FROM invitacion WHERE id = '$id'";
@@ -11,22 +12,20 @@
         $email = $rowSQL['email'];
 
 	if($resultadoSQL){
-        
-        echo json_encode(array(
-            'id' => $id,
-            'nombre' => $nombre,
-            // 'telefono' => $telefono,
-            'curp' => $curp,
-            'email' => $email,
-            'success' => 1
+
+        echo json_encode(
+            array(
+            'success'=>1,
+            'id'=>$id,
+            'nombre'=>$nombre,
+            'curp'=>$curp,
+            'email'=>$email
         ));
     }
     else{
         echo json_encode(array(
-            'success' => 0
+            'success'=>0
         ));
     }
 
 ?>
-
-<!-- cmd + D es para seleccionar varios del mismo y escribir -->
