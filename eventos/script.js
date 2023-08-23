@@ -70,7 +70,7 @@
                         else if (jsonData.success == "1")
                         {
                             // html
-                            document.getElementById('checkDiv').innerHTML="";
+                            
                             $.ajax({
                               type:"POST",
                               url:"prcd/datos_checkin.php",
@@ -92,9 +92,9 @@
                             let timerInterval
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Usuario correcto',
-                                text: 'Credenciales correctas',
-                                footer: 'Smart-Event | 2023',
+                                title: 'Registro correcto',
+                                text: 'Has hecho checkin para el PEJ2023',
+                                footer: 'INJUVENTUD | 2023',
                                 timer: 2000,
                               timerProgressBar: true,
                               didOpen: () => {
@@ -122,7 +122,7 @@
                                 icon: 'error',
                                 title: 'QR NO VÁLIDO',
                                 text: 'Credenciales incorrectas',
-                                footer: 'Smart-Event | 2023',
+                                footer: 'INJUVENTUD | 2023',
                                 timer: 2000,
                                 timerProgressBar: true,
                                 didOpen: () => {

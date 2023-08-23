@@ -1,7 +1,7 @@
 <?php
     include('qc.php');
 
-    if (isset($_POST['evento']) && isset($_POST['c'])) {
+    if (isset($_POST['c'])) {
 
         date_default_timezone_set('America/Mexico_City');
         setlocale(LC_TIME, 'es_MX.UTF-8');
@@ -10,7 +10,7 @@
         $evento = $_POST['evento'];
         $cadena = $_POST['c'];
 
-        $sqlValidacion = "SELECT * FROM asistentes WHERE idQr = '$cadena'";
+        $sqlValidacion = "SELECT * FROM invitacion WHERE curp = '$cadena'";
         $resultadoSqlValidacion = $conn->query($sqlValidacion);
         $numRowsV = $resultadoSqlValidacion->num_rows;
 
@@ -19,7 +19,7 @@
         }
         else{
 
-        $sql = "SELECT * FROM registro WHERE idQr = '$cadena' AND evento = '$evento'";
+        $sql = "SELECT * FROM invitacion WHERE curp = '$cadena' AND checkin = 1";
         $resultadoSql = $conn->query($sql);
         $numRows = $resultadoSql->num_rows;
 
@@ -27,16 +27,17 @@
             echo json_encode(array('success' => 0));
         }
         else{
-            $sqlQuery ="SELECT * FROM asistentes WHERE idQr = '$cadena'";
+            $sqlQuery ="SELECT * FROM invitacion WHERE curp = '$cadena'";
             $resultadoSqlQuery = $conn->query($sqlQuery);
             $rowsqlQuery = $resultadoSqlQuery->fetch_assoc();
 
-            $qr = $rowsqlQuery['idQr'];
+            $qr = $rowsqlQuery['curp'];
             $id = $rowsqlQuery['id'];
             $flag = 1;
 
-            $sqlInsert = "INSERT INTO registro (asistente,evento,asistencia,fecha_registro,idQr) VALUES ('$id','$evento','$flag','$fecha_sistema','$qr')";
-            $resultadoSqlInsert = $conn->query($sqlInsert);
+            // $sqlInsert = "INSERT INTO invitacion (asistente,evento,asistencia,fecha_registro,idQr) VALUES ('$id','$evento','$flag','$fecha_sistema','$qr')";
+            $sqlUpdate = "UPDATE invitacion SET checkin = '$flag' WHERE curp = '$cadena'";
+            $resultadoSqlInsert = $conn->query($sqlUpdate);
 
             if($resultadoSqlInsert){
                 echo json_encode(array('success' => 1));
