@@ -106,11 +106,11 @@
   </head>
   <body onunload="cerrarPagina()">
 <main class="mb-0">
-  <header class="p-3" style="background-color:#83272b;">
+  <header class="p-3" style="background-color:#aaa9ad;">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none rounded bg-light">
-        <img src="../img/logo_injuventud_01.png" width="auto" height="50" role="img" alt="">        
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none rounded ">
+        <img src="../img/JUV-Horizontal.png" width="auto" height="50" role="img" alt="">        
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
@@ -129,16 +129,16 @@
     <h4 class="text-secondary ms-5 mt-2 mb-4">NOMBRE DEL EVENTO: <span class="text-dark textRusso"><strong><?php echo $rowEventos['nombre'] ?></strong></span> | <button class="btn btn-primary btn-sm" onclick="abrirCamara()"><i class="bi bi-qr-code"></i> Leer QR</button> <button class="btn btn-danger btn-sm"  id="botonCerrar"><i class="bi bi-qr-code"></i> Cerrar QR</button></h4>
   </div>
 
-  <div class="container-fluid w-100 h-100 mt-2" style="width:100%; height:">
+  <div class="container-fluid w-100 h-100 mt-2" style="width:100%; height:auto">
     <div class="row mb-0 border-bottom">
-      <div class="col-12 border-start align-self-center justify-content-center">
+      <div class="col-12-md border-start align-self-center justify-content-center">
         <!-- <p class="mt-3"></p> -->
         <div class="card w-100 text-center" style="height:900px">
-          <div class="card-header text-light textRusso" style="background-color:#83272b;">
+          <div class="card-header text-light textRusso mb-5" style="background-color:#aaa9ad ;">
           <i class="bi bi-camera-fill"></i> Cámara de registro de asistentes
           </div>
             <div class="card-body text-center">
-              <img src="../img/logo_injuventud_01.png" style="max-width: 400px;"  alt="" id="imagenFCA">
+              <img src="../img/juventud2023.png" style="max-width: 400px;" class="mt-5" alt="" id="imagenFCA">
               <video id="preview" class="w-100" style="height:700px;" hidden></video>  
           </div>
           <p hidden><input type="text" id="textQR" onchange="checkIn()"></p>
