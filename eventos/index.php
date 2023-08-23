@@ -88,14 +88,14 @@ session_start();
   </head>
   <body>
 <main class="mb-0">
-  <header class="p-3" style="background-color:#8a608a;">
+  <header class="p-3" style="background-color:#aaa9ad;">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
           <img src="../assets/brand/img/SmartEventLogoLight.png" width="auto" height="70" role="img" alt="">        
         </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
+        <ul class="nav col-md-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
           <li><a href="index.php" class="nav-link px-2 text-light">Eventos</a></li>
         </ul>
 
@@ -110,13 +110,13 @@ session_start();
 
   </div>
 
-    <div class="container-fluid w-75 h-100 mt-5 mb-4 p-5 text-center">
-    <img src="../assets/brand/img/SmartEventLogo.png" width="270" height="" role="img" alt="" class="p-2">
+    <div class="container-fluid w-75 h-100 mt-5 mb-1 p-2 text-center">
+    <img src="../img/juventud2023.png" width="270" height="" role="img" alt="" class="p-2">
         <h3 class="text-secondary mb-5" style="font-family: 'Dosis', sans-serif;">Bienvenid@<strong class="text-dark"></strong></h3>
       
       <hr>
         <div class="row justify-content-center">
-            <div class="col-12">
+            <div class="col-md-12">
             <form action="checkin.php" method="POST">
                 <div class="input-group mb-3 w-100 mt-5">
                     <span class="input-group-text" id="basic-addon1">Seleccionar Evento</span>
