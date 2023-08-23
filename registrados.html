@@ -75,15 +75,15 @@ margin-bottom: 5px;
         <section>
             <div class="container">
                 <div class="row mb-4">
-                    <div class="col-md-6"><h3 class="text-secondary"><i class="bi bi-card-list"></i> Reporte de invitados</h3></div>
+                    <div class="col-md-6"><h3 class="text-secondary"><i class="bi bi-card-list"></i> Reporte de invitados registrados</h3></div>
                     <div class="col-5 text-end">
                         <input class="form-control" id="myInput" type="search" placeholder="Buscar" aria-label="Search">
                     </div>
                     <div class="col-md-1 text-end">
-                        <a href="reporte.php" class="btn btn-success"><i class="bi bi-file-earmark-excel-fill"></i> Excel</a>
+                        <a href="reporteRegistrados.php" class="btn btn-success"><i class="bi bi-file-earmark-excel-fill"></i> Excel</a>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive">        
                   <table class="table text-center">
                       <thead class="table-primary">
                           <tr>
@@ -92,8 +92,7 @@ margin-bottom: 5px;
                               <th>CURP</th>
                               <th>Teléfono</th>
                               <th>Email</th>
-                              <th>Editar</th>
-                              <th>Eliminar</th>
+                              <th>Estatus</th>
                           </tr>
                       </thead>
                       <tbody id="tablaInvitados">
@@ -153,105 +152,12 @@ margin-bottom: 5px;
 
         $.ajax({
             type:"POST",
-            url:"tablaInvitados.php",
+            url:"tablaInvitadosRegistrados.php",
             dataType: "html",
             success: function(data) {
                 $('#tablaInvitados').fadeIn(20).html(data);
             }               
         });
 }
-
-$(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#tablaInvitados tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script>
-function generarQR(){
-  var texto = document.getElementById('curp').value;
-
-var qrcode = new QRCode(document.getElementById("qr"), {
-      text: texto,
-      width: 300,
-      height: 300,
-      correctLevel: QRCode.CorrectLevel.H
-    });
-}
-
-$(document).ready(function() {	
-    $('#btnCURP').on('click', function() {
-        // $('#result-username2').html('<img src="img/loader.gif" />').fadeOut(1000);
-
-        // var username = $(this).val();		
-        var username = document.getElementById('curpSearch').value;		
-        var dataString = 'username='+username;
-
-        $.ajax({
-            type: "POST",
-            url: "verificacion2.php",
-            dataType:"json",
-            data: dataString,
-            success: function(data) {
-              var jsonData = JSON.parse(JSON.stringify(data));
-              var verificador = jsonData.success;
-
-              if (verificador == 1){
-
-                var texto = jsonData.curp;
-
-                var qrcode = new QRCode(document.getElementById("qr2"), {
-                      text: texto,
-                      width: 300,
-                      height: 300,
-                      correctLevel: QRCode.CorrectLevel.H
-                    });
-
-                }
-              else if (verificador == 0){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'No existe el invitado',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-
-            }
-        });
-    });              
-});  
-
-function eliminarRegistro(reg){
-     $.ajax({
-            type:"POST",
-            url:"eliminar.php",
-            data:{
-                reg:reg
-            },
-            dataType: "JSON",
-            success: function(data) {
-                var jsonData = JSON.parse(JSON.stringify(data));
-                var verificador = jsonData.success;
-
-              if (verificador == 1){
-                console.log('Registro eliminado');
-                saveAsistente();
-              }
-              else{
-                console.log('No se eliminó el registro');
-              }
-
-            }               
-        });
-
-}
-
 
 </script>
