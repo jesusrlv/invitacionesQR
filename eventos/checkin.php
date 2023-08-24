@@ -151,7 +151,11 @@
           <p hidden><input type="text" id="evento" value="<?php echo $idEventos ?>"></p>
 
       </div>
-
+      <select class="form-select mt-2" aria-label="Default select example" id="cameraCanje" name="cameraCanje">
+        <option selected>Seleccionar cámara</option>
+        <option value="1">Frontal</option>
+        <option value="2">Back</option>
+      </select>
     </div>
   </div>
   
