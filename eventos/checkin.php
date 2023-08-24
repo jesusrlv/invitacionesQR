@@ -110,11 +110,11 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none rounded ">
-        <img src="../img/JUV-Horizontal.png" width="auto" height="50" role="img" alt="">        
+        <img src="../img/logo_juventudbarra.png" width="auto" height="50" role="img" alt="">        
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
-          <li><a href="index.php" class="nav-link px-2 text-light textRusso"> Registro de asistentes QR</a></li>
+          <li><a href="index.php" class="nav-link px-2 text-light"> Registro de asistentes QR</a></li>
         </ul>
 
         <div class="text-end">
@@ -124,22 +124,28 @@
       </div>
     </div>
   </header>
-
+<div class="row">
+  <div class="col-md-12">
   <div class="b-example-divider">
-    <h4 class="text-secondary ms-5 mt-2 mb-4">NOMBRE DEL EVENTO: <span class="text-dark textRusso"><strong><?php echo $rowEventos['nombre'] ?></strong></span> | <button class="btn btn-primary btn-sm" onclick="abrirCamara()"><i class="bi bi-qr-code"></i> Leer QR</button> <button class="btn btn-danger btn-sm"  id="botonCerrar"><i class="bi bi-qr-code"></i> Cerrar QR</button></h4>
+    <p class="text-secondary text-center  mt-2 mb-4" style="font-size:1rem;">EVENTO: <span class="text-dark text-wrap"><strong><?php echo $rowEventos['nombre'] ?></strong></span>
+    </p>
   </div>
-
+  </div>
+  </div>
   <div class="container-fluid w-100 h-100 mt-2" style="width:100%; height:auto">
     <div class="row mb-0 border-bottom">
-      <div class="col-12-md border-start align-self-center justify-content-center">
+      <div class="col-md-12 border-start align-self-center justify-content-center">
         <!-- <p class="mt-3"></p> -->
-        <div class="card w-100 text-center" style="height:900px">
-          <div class="card-header text-light textRusso mb-5" style="background-color:#aaa9ad ;">
-          <i class="bi bi-camera-fill"></i> Cámara de registro de asistentes
+        <div class="card w-100 text-center" style="height:700px">
+          <div class="card-header text-light mb-5" style="background-color:#393d41;">
+          <i class="bi bi-camera-fill"></i><strong> Cámara de registro de asistentes</strong>
+          <div class="text-center mt-2">
+          <button class="btn btn-primary btn-sm" onclick="abrirCamara()"><i class="bi bi-qr-code"></i> Leer QR</button> <button class="btn btn-danger btn-sm"  id="botonCerrar"><i class="bi bi-qr-code"></i> Cerrar QR</button>
+          </div>
           </div>
             <div class="card-body text-center">
-              <img src="../img/juventud2023.png" style="max-width: 400px;" class="mt-5" alt="" id="imagenFCA">
-              <video id="preview" class="w-100" style="height:700px;" hidden></video>  
+              <img src="../img/pejlogosilver.png" style="max-width: 400px;" class="mt-5 img-fluid" alt="" id="imagenFCA">
+              <video id="preview" class="w-100" style="height:500px;" hidden></video>  
           </div>
           <p hidden><input type="text" id="textQR" onchange="checkIn()"></p>
           <p hidden><input type="text" id="evento" value="<?php echo $idEventos ?>"></p>
