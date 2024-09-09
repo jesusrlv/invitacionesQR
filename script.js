@@ -60,3 +60,18 @@ function guardarEditar(){
     });
 
 }
+
+function municipio() {
+  $.ajax({
+    type:"POST",
+    url:"municipio.php",
+    data:{
+        id:id
+    },
+    dataType: 'json',
+    success: function(response) {
+       
+
+    }               
+});
+}
