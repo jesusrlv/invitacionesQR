@@ -29,7 +29,7 @@
       }
 </style>
   <!-- Enlaza Bootstrap CSS (asegúrate de haberlo descargado o enlaza a una CDN) --> 
-    <body>
+    <body onload="municipio()">
         <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
             <div class="container-fluid">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,15 +94,8 @@
 
                                 <div class="input-group mb-3">
                                   <span class="input-group-text" id="basic-addon1"><i class="bi bi-globe-americas"></i></span>
-                                  <select class="form-select" aria-label="Default select example" id="tipoInvitacion">
-                                    <option value="" selected>Selecciona el municipio de procedencia ...</option>
-                                    <option value="Jurado PEJ2024">Jurado PEJ2024</option>
-                                    <option value="Participante PEJ2024">Participante PEJ2024</option>
-                                    <option value="Miembro del Gabinete GODEZAC">Miembro del Gabinete GODEZAC</option>
-                                    <option value="Instancia Municipal de la Juventud">Instancia Municipal de la Juventud</option>
-                                    <option value="Institución educativa">Institución educativa</option>
-                                    <option value="Invitado especial">Invitado especial</option>
-                                    <option value="Presidencia Municipal">Presidencia Municipal</option>
+                                  <select class="form-select" aria-label="Default select example" id="municipios">
+                                    
                                    
                                   </select>
                               </div>
@@ -358,4 +351,15 @@ $(document).ready(function() {
         });
     });              
 });  
+
+function municipio() {
+  $.ajax({
+    type:"POST",
+    url:"municipio.php",
+    dataType: 'html',
+    success: function(data) {
+      $("#municipios").html(data);
+    }               
+});
+}
 </script>
