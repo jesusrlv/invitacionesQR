@@ -145,8 +145,8 @@
                          </div><!-- container -->
                          <div class="container-fluid mt-3 responsive" id="buscarCURP" hidden>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
-                                <input type="text" class="form-control" placeholder="CURP" aria-label="Username" aria-describedby="basic-addon1" id="curpSearch">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-at-fill"></i></span>
+                                <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" id="curpSearch">
                             </div>
                             <a type="button" class="btn btn-primary" id="btnCURP"><i class="bi bi-search"></i> Buscar</a>
                          </div>
@@ -165,8 +165,11 @@
 
 <script>
     function saveAsistente(){
+        var tipoInvitacion = document.getElementById('tipoInvitacion').value;
         var nombre = document.getElementById('name').value;
-        var curp = document.getElementById('curp').value;
+        var municipios = document.getElementById('municipios').value;
+        var edad = document.getElementById('edad').value;
+        var fecha = document.getElementById('fecha').value;
         var email = document.getElementById('email').value;
         var telefono = document.getElementById('telefono').value;
 
@@ -174,10 +177,13 @@
             type:"POST",
             url:"save.php",
             data:{
+                tipoInvitacion:tipoInvitacion,
                 nombre:nombre,
-                curp:curp,
-                telefono:telefono,
-                email:email
+                municipios:municipios,
+                edad:edad,
+                fecha:fecha,
+                email:email,
+                telefono:telefono
             },
             dataType: "json",
             success: function(data) {
@@ -198,11 +204,12 @@
                     }); 
                     generarQR();
                     document.getElementById('name').disabled=true;
-                    document.getElementById('curp').disabled=true;
-                    document.getElementById('telefono').disabled=true;
+                    document.getElementById('municipios').disabled=true;
+                    document.getElementById('edad').disabled=true;
+                    document.getElementById('fecha').disabled=true;
                     document.getElementById('email').disabled=true;
-                    document.getElementById('curpSearch').disabled=true;
-
+                    document.getElementById('telefono').disabled=true;
+                    
                     }
                     else if (verificador = 0){
                         Swal.fire({
