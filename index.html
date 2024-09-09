@@ -15,7 +15,7 @@
 
   <script src="QR/ajax_generate_code.js"></script>
 
-  <title>Formulario de Registro | PEJ2023</title>
+  <title>Formulario de Registro | PEJ2024</title>
 
 </head>
 <style>
@@ -36,7 +36,7 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="#">PEJ2023</a>
+                <a class="navbar-brand" href="#">PEJ2024</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Web oficial</a>
@@ -74,24 +74,63 @@
                             <p class="card-text">Se va a generar un QR como invitación para los asistentes.</p>
                             <div class="container-fluid responsive" id="formulario">
                                 <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-list-stars"></i></span>
+                                    <select class="form-select" aria-label="Default select example" id="tipoInvitacion">
+                                      <option value="" selected>Selecciona el tipo de acceso ...</option>
+                                      <option value="Jurado PEJ2024">Jurado PEJ2024</option>
+                                      <option value="Participante PEJ2024">Participante PEJ2024</option>
+                                      <option value="Miembro del Gabinete GODEZAC">Miembro del Gabinete GODEZAC</option>
+                                      <option value="Instancia Municipal de la Juventud">Instancia Municipal de la Juventud</option>
+                                      <option value="Institución educativa">Institución educativa</option>
+                                      <option value="Invitado especial">Invitado especial</option>
+                                      <option value="Presidencia Municipal">Presidencia Municipal</option>
+                                     
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
                                     <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" id="name">
                                 </div>
-                                <div id="result-username" class="text-start mb-1"></div>
-                                <div id="result-username2" class="text-start mb-1"></div>
 
                                 <div class="input-group mb-3">
+                                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-globe-americas"></i></span>
+                                  <select class="form-select" aria-label="Default select example" id="tipoInvitacion">
+                                    <option value="" selected>Selecciona el municipio de procedencia ...</option>
+                                    <option value="Jurado PEJ2024">Jurado PEJ2024</option>
+                                    <option value="Participante PEJ2024">Participante PEJ2024</option>
+                                    <option value="Miembro del Gabinete GODEZAC">Miembro del Gabinete GODEZAC</option>
+                                    <option value="Instancia Municipal de la Juventud">Instancia Municipal de la Juventud</option>
+                                    <option value="Institución educativa">Institución educativa</option>
+                                    <option value="Invitado especial">Invitado especial</option>
+                                    <option value="Presidencia Municipal">Presidencia Municipal</option>
+                                   
+                                  </select>
+                              </div>
+                                
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-123"></i></span>
+                                    <input type="text" class="form-control" placeholder="Edad" aria-label="Edad" aria-describedby="basic-addon1" id="edad">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar4-week"></i></i></span>
+                                    <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Fecha de nacimiento" aria-describedby="basic-addon1" id="fecha">
+                                </div>
+                                
+
+                                <!-- <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-regex"></i></span>
                                     <input type="text" class="form-control" placeholder="CURP" aria-label="Username" aria-describedby="basic-addon1" onchange="validarInput(this);" id="curp" >
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-telephone-fill"></i></span>
                                     <input type="text" class="form-control" placeholder="Teléfono" aria-label="Username" aria-describedby="basic-addon1" id="telefono" >
-                                </div>
+                                </div> -->
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope"></i></span>
-                                    <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" id="email">
+                                    <input type="email" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" id="email">
                                 </div>
+                                <div id="result-username" class="text-start mb-1"></div>
+                                <div id="result-username2" class="text-start mb-1"></div>
                             </div>
                           </label>
                           <div id="botones">
@@ -244,7 +283,7 @@ function nuevoAsistente(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 function generarQR(){
-  var texto = document.getElementById('curp').value;
+  var texto = document.getElementById('email').value;
 
 var qrcode = new QRCode(document.getElementById("qr"), {
       text: texto,
@@ -253,89 +292,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
       correctLevel: QRCode.CorrectLevel.H
     });
 }
-
-// VALIDACIÓN CURP
-function validarInput(input) {
-        var curp = input.value.toUpperCase(),
-            resultado = document.getElementById("result-username"),
-            valido = "No válido";
-        let x = 0;
-        let x2 = 0;
-
-        if (curpValida(curp)) {
-            alert('CURP Válido');
-            document.getElementById('result-username2').innerHTML='<span class="badge text-bg-primary"><small><i class="bi bi-check-circle-fill"></i> CURP válida</small><span>';
-            x = 1;
-            
-
-        } else {
-            alert('CURP No Válido');
-            document.getElementById('result-username2').innerHTML='<span class="badge text-bg-danger"><small><i class="bi bi-check-circle-fill"></i> CURP No Válido</small><span>';
-            x = 0;
-
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "verificacion.php",
-            data: {
-              curp:curp
-            },
-            dataType: "json",
-            success: function(data) {
-              var jsonData = JSON.parse(JSON.stringify(data));
-              var success = jsonData.success;
-              
-
-              if(success == 1){
-                x2 = 0;
-              }
-              else{
-                x2 = 1;
-              }
-
-              var suma;
-              suma = x + x2;
-              console.log(suma);
-              
-              if (suma == 2){
-                document.getElementById('registroBtn').disabled=false;
-              }
-              else{
-                document.getElementById('registroBtn').disabled=true;
-              }
-          
-            }
-        });
-
-        
-    }
-    function curpValida(curp) {
-        var re = /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0\d|1[0-2])(?:[0-2]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/,
-            validado = curp.match(re);
-        
-        if (!validado)  //Coincide con el formato general?
-            return false;
-        
-        //Validar que coincida el dígito verificador
-        function digitoVerificador(curp17) {
-            //Fuente https://consultas.curp.gob.mx/CurpSP/
-            var diccionario  = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ",
-                lngSuma      = 0.0,
-                lngDigito    = 0.0;
-            for(var i=0; i<17; i++)
-                lngSuma= lngSuma + diccionario.indexOf(curp17.charAt(i)) * (18 - i);
-            lngDigito = 10 - lngSuma % 10;
-            if(lngDigito == 10)
-                return 0;
-            return lngDigito;
-        }
-        if (validado[2] != digitoVerificador(validado[1])) 
-            return false;
-            
-        return true; //Validado
-    }
-
+    
 // VALIDA USUARIO REGISTRADO
  
 $(document).ready(function() {	
