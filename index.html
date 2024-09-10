@@ -279,8 +279,11 @@ function nuevoAsistente(){
   document.getElementById('email').value="";
   document.getElementById('curpSearch').value="";
 
+  document.getElementById('tipoInvitacion').disabled=false;
   document.getElementById('name').disabled=false;
-  document.getElementById('curp').disabled=false;
+  document.getElementById('municipios').disabled=false;
+  document.getElementById('edad').disabled=false;
+  document.getElementById('fecha').disabled=false;
   document.getElementById('email').disabled=false;
   document.getElementById('curpSearch').disabled=false;
 
@@ -359,13 +362,17 @@ $(document).ready(function() {
 
                 }
               else if (verificador == 0){
+
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'error',
-                        title: 'No existe el invitado',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                        imageUrl: 'img/logo_injuventud_01.png',
+                        imageHeight: 200,
+                        imageAlt: 'INJUVENTUD',
+                        title: 'No existe el  registro del invitado',
+                        html: 'Error',
+                        confirmButtonColor: '#F53532',
+                        footer: 'INJUVENTUD'
+                    }); 
                 }
 
             }

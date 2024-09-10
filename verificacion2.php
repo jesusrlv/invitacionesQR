@@ -8,10 +8,10 @@ if (isset($_POST)) {
         "SELECT * FROM invitacion WHERE email = '$username'"
     );
 
-    $rowCURP = $result->fetch_assoc();
-    $curp = $rowCURP['curp'];
     
     if ($result->num_rows > 0) {
+        $rowCURP = $result->fetch_assoc();
+        $curp = $rowCURP['email'];
         echo json_encode(array(
             'curp' => $curp,
         'success' => 1));
