@@ -106,28 +106,27 @@
   </head>
   <body onunload="cerrarPagina()">
 <main class="mb-0">
-  <header class="p-3" style="background-color:#363636;">
+<header class="p-3" style="background-color:#e4037d;">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none rounded ">
-        <img src="../img/logo_juventudbarra.png" width="auto" height="50" role="img" alt="">        
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <img src="../img/logo_juventudbarra.png"  width="auto" height="70" role="img" alt="">        
         </a>
-
+      
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
-          <li><a href="index.php" class="nav-link px-2 text-light"> Registro de asistentes QR</a></li>
+          <li><a href="index.php" class="nav-link px-2 text-light">Registro eventos</a></li>
         </ul>
 
         <div class="text-end">
-          <!-- <button type="button" class="btn btn-outline-light me-2">Login</button> -->
-          <a href="prcd/sort.php" type="button" class="btn btn-primary"><i class="bi bi-door-open-fill"></i> Salir</a>
+          <a href="prcd/sort.php" type="button" class="btn btn-outline-light">Salir</a>
         </div>
       </div>
     </div>
   </header>
 <div class="row">
   <div class="col-md-12">
-  <div class="b-example-divider">
-    <p class="text-secondary text-center  mt-2 mb-4" style="font-size:1rem;">EVENTO: <span class="text-dark text-wrap"><strong><?php echo $rowEventos['nombre'] ?></strong></span>
+  <div class="b-example-divider" style="background-color:#199bd8">
+    <p class="text-light text-center  mt-2 mb-4" style="font-size:1rem;">EVENTO: <span class="text-light text-wrap"><strong><?php echo $rowEventos['nombre'] ?></strong></span>
     </p>
   </div>
   </div>
@@ -137,16 +136,17 @@
       <div class="col-md-12 border-start align-self-center justify-content-center">
         <!-- <p class="mt-3"></p> -->
         <div class="card w-100 text-center" style="height:700px">
-          <div class="card-header text-light mb-5" style="background-color:#393d41;">
+          <div class="card-header text-dark mb-5 h5" style="background-color:#f49d0a;">
           <i class="bi bi-camera-fill"></i><strong> Cámara de registro de asistentes</strong>
           <div class="text-center mt-2">
           <button class="btn btn-primary btn-sm" onclick="abrirCamara()"><i class="bi bi-qr-code"></i> Leer QR</button> <button class="btn btn-danger btn-sm"  id="botonCerrar"><i class="bi bi-qr-code"></i> Cerrar QR</button>
           </div>
           </div>
-            <div class="card-body text-center">
-              <img src="../img/pejlogosilver.png" style="max-width: 400px;" class="mt-5 img-fluid" alt="" id="imagenFCA">
-              <video id="preview" class="w-100" style="height:500px;" hidden></video>  
-          </div>
+          <div class="card-body text-center d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
+            <img src="../img/logo_pej2024.png" style="max-width: 400px;" class="img-fluid" alt="" id="imagenFCA">
+            <video id="preview" class="w-100" style="height:500px;" hidden></video>  
+        </div>
+
           <p hidden><input type="text" id="textQR" onchange="checkIn()"></p>
           <p hidden><input type="text" id="evento" value="<?php echo $idEventos ?>"></p>
 

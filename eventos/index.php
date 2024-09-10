@@ -80,6 +80,7 @@ session_start();
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+      
     </style>
 
     
@@ -88,42 +89,59 @@ session_start();
   </head>
   <body>
 <main class="mb-0">
-  <header class="p-3" style="background-color:#363636;">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <img src="../img/logo_juventudbarra.png"  width="auto" height="70" role="img" alt="">        
-        </a>
-      
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
-          <li><a href="index.php" class="nav-link px-2 text-light">Eventos</a></li>
-        </ul>
+<header class="p-3" style="background-color:#e4037d;">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <img src="../img/logo_juventudbarra.png" width="auto" height="70" role="img" alt="">        
+      </a>
 
-        <div class="text-end">
-          <a href="prcd/sort.php" type="button" class="btn btn-light">Salir</a>
-        </div>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 ms-4 justify-content-center mb-md-0">
+        <li><a href="index.php" class="nav-link px-2 text-light">Registro eventos</a></li>
+      </ul>
+
+      <div class="text-end mt-2 mt-lg-0">
+        <a href="prcd/sort.php" type="button" class="btn btn-outline-light">Salir</a>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <div class="b-example-divider">
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <img src="../img/logo_injuventud_02.png" width="auto" height="54" role="img" alt="">
+        <span class="fs-4"></span>
+      </a>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </header>
+  </div>
+
+  <div class="b-example-divider" style="background-color:#199bd8">
 
   </div>
 
     <div class="container-fluid w-75 h-100 mt-5 mb-1 p-2 text-center">
     <div class="row"> 
     <div class="col-md-12">
-    <img src="../img/pejlogosilver.png" width="400" height="" role="img" alt="" class="img-fluid p-2 mb-3">
+    <img src="../img/logo_pej2024.png" width="400" height="" role="img" alt="" class="img-fluid p-2 mb-3">
     <br>
-        <h3 class="text-secondary mb-5" style="font-family: 'Dosis', sans-serif;">Bienvenid@<strong class="text-dark"></strong></h3>
+        <h3 class="mb-5" style="color:#162944">Bienvenid@<strong class="text-dark"></strong></h3>
         </div>
         </div> 
       <hr>
+      <form action="checkin.php" method="POST">
         <div class="row justify-content-center">
-            <div class="col-md-12">
-            <form action="checkin.php" method="POST">
+            <div class="col-md-12 col-sm-12">
                 <div class="input-group mb-3 w-100 mt-5">
-                    <span class="input-group-text" id="basic-addon1">Seleccionar Evento</span>
+                    <span class="input-group-text" id="basic-addon1">Evento</span>
                     <select class="form-select" aria-label="Default select example" name="evento">
                         <option selected>Seleccionar ...</option>
                         <?php
@@ -138,7 +156,7 @@ session_start();
                           }
                         ?>
                     </select>
-                    <button class="btn text-white" style="background-color: #363636; " type="submit">Acceder <i class="bi bi-arrow-right-circle"></i></button>
+                    <button class="btn btn-primary" type="submit"> <i class="bi bi-arrow-right-circle"></i></button>
             </form>
             </div>
           </div>
@@ -148,13 +166,22 @@ session_start();
   
 </main>
 <div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <p class="col-md-12 mb-0 text-muted"><a href="/" class="col-md-4 d-flex mb-md-0 me-md-auto link-secondary text-decoration-none">
-                Smart-Event | 2023
-            </a></p>
-      
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+      <div class="row">
+        <div class="col-md-4">
+          <span class="text-muted">&copy; 2024 INJUVENTUD</span>
+        </div>
+        <div class="col-md-4">
+          <a href="/" class="d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <img src="../img/logo_injuventud_01.png" width="auto" height="80" role="img" alt="" class="p-2">
+          </a>
+        </div>
+        <div class="col-md-4">
+          <span class="text-muted">&copy; GODEZAC</span>
+        </div>
+      </div>
     </footer>
-  </div>
+    </div>
 
 
 
