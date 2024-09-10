@@ -5,7 +5,7 @@ if (isset($_POST)) {
     $username = (string)$_POST['username'];
  
     $result = $conn->query(
-        "SELECT * FROM invitacion WHERE curp = '$username'"
+        "SELECT * FROM invitacion WHERE email = '$username'"
     );
 
     $rowCURP = $result->fetch_assoc();

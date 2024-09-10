@@ -77,8 +77,8 @@
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-list-stars"></i></span>
                                     <select class="form-select" aria-label="Default select example" id="tipoInvitacion">
                                       <option value="" selected>Selecciona el tipo de acceso ...</option>
-                                      <option value="Jurado PEJ2024">Jurado PEJ2024</option>
                                       <option value="Participante PEJ2024">Participante PEJ2024</option>
+                                      <option value="Jurado PEJ2024">Jurado PEJ2024</option>
                                       <option value="Miembro del Gabinete GODEZAC">Miembro del Gabinete GODEZAC</option>
                                       <option value="Instancia Municipal de la Juventud">Instancia Municipal de la Juventud</option>
                                       <option value="Institución educativa">Institución educativa</option>
@@ -131,7 +131,7 @@
                               <i class="bi bi-person-plus"></i> 
                               Nuevo registro
                             </button>
-                            <button type="button" class="btn btn-primary" onclick="saveAsistente()" id="registroBtn" disabled>
+                            <button type="button" class="btn btn-primary" onclick="saveAsistente()" id="registroBtn">
                               <i class="bi bi-person-plus"></i> 
                               Registrarse
                             </button>
@@ -171,7 +171,12 @@
         var edad = document.getElementById('edad').value;
         var fecha = document.getElementById('fecha').value;
         var email = document.getElementById('email').value;
-        var telefono = document.getElementById('telefono').value;
+      if (tipoInvitacion == "" || nombre == "" || municipios == "" || edad == "" || fecha == "" || email == ""){
+        // document.getElementById('registroBtn').disabled=true;
+        alert("Hay campos vacíos, llena todos los datos");
+      }
+      else{
+        document.getElementById('registroBtn').disabled=false;
 
         $.ajax({
             type:"POST",
@@ -182,8 +187,7 @@
                 municipios:municipios,
                 edad:edad,
                 fecha:fecha,
-                email:email,
-                telefono:telefono
+                email:email
             },
             dataType: "json",
             success: function(data) {
@@ -203,15 +207,16 @@
                         footer: 'INJUVENTUD'
                     }); 
                     generarQR();
+                    document.getElementById('tipoInvitacion').disabled=true;
                     document.getElementById('name').disabled=true;
                     document.getElementById('municipios').disabled=true;
                     document.getElementById('edad').disabled=true;
                     document.getElementById('fecha').disabled=true;
                     document.getElementById('email').disabled=true;
-                    document.getElementById('telefono').disabled=true;
                     
                     }
                     else if (verificador = 0){
+                      console.error(jsonData.error)
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
@@ -222,6 +227,7 @@
                     }           
             }               
         });
+      }
 }
 function noHidden(){
   document.getElementById('buscarCURP').hidden=false;
@@ -232,8 +238,11 @@ function noHidden(){
   document.getElementById('btnDos').setAttribute('class','nav-link active');
   
   document.getElementById('qr').innerHTML="";
+  document.getElementById('tipoInvitacion').value="";
   document.getElementById('name').value="";
-  document.getElementById('curp').value="";
+  document.getElementById('municipios').value="";
+  document.getElementById('edad').value="";
+  document.getElementById('fecha').value="";
   document.getElementById('email').value="";
   document.getElementById('curpSearch').value="";
   
@@ -249,8 +258,11 @@ function hiddenF(){
   document.getElementById('btnDos').setAttribute('class','nav-link');
   
   document.getElementById('qr').innerHTML="";
+  document.getElementById('tipoInvitacion').value="";
   document.getElementById('name').value="";
-  document.getElementById('curp').value="";
+  document.getElementById('municipios').value="";
+  document.getElementById('edad').value="";
+  document.getElementById('fecha').value="";
   document.getElementById('email').value="";
   document.getElementById('curpSearch').value="";
 
@@ -258,10 +270,12 @@ function hiddenF(){
 
 function nuevoAsistente(){
 
-  
   document.getElementById('qr').innerHTML="";
+  document.getElementById('tipoInvitacion').value="";
   document.getElementById('name').value="";
-  document.getElementById('curp').value="";
+  document.getElementById('municipios').value="";
+  document.getElementById('edad').value="";
+  document.getElementById('fecha').value="";
   document.getElementById('email').value="";
   document.getElementById('curpSearch').value="";
 
@@ -296,7 +310,7 @@ var qrcode = new QRCode(document.getElementById("qr"), {
 // VALIDA USUARIO REGISTRADO
  
 $(document).ready(function() {	
-    $('#curp').on('blur', function() {
+    $('#email').on('blur', function() {
         // $('#result-username2').html('<img src="img/loader.gif" />').fadeOut(1000);
 
         var username = $(this).val();		
