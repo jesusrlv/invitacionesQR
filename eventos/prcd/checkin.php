@@ -10,7 +10,7 @@
         $evento = $_POST['evento'];
         $cadena = $_POST['c'];
 
-        $sqlValidacion = "SELECT * FROM invitacion WHERE curp = '$cadena'";
+        $sqlValidacion = "SELECT * FROM invitacion WHERE email = '$cadena'";
         $resultadoSqlValidacion = $conn->query($sqlValidacion);
         $numRowsV = $resultadoSqlValidacion->num_rows;
 
@@ -19,7 +19,7 @@
         }
         else{
 
-        $sql = "SELECT * FROM invitacion WHERE curp = '$cadena' AND checkin = 1";
+        $sql = "SELECT * FROM invitacion WHERE email = '$cadena' AND checkin = 1";
         $resultadoSql = $conn->query($sql);
         $numRows = $resultadoSql->num_rows;
 
@@ -27,16 +27,16 @@
             echo json_encode(array('success' => 0));
         }
         else{
-            $sqlQuery ="SELECT * FROM invitacion WHERE curp = '$cadena'";
+            $sqlQuery ="SELECT * FROM invitacion WHERE email = '$cadena'";
             $resultadoSqlQuery = $conn->query($sqlQuery);
             $rowsqlQuery = $resultadoSqlQuery->fetch_assoc();
 
-            $qr = $rowsqlQuery['curp'];
+            $qr = $rowsqlQuery['email'];
             $id = $rowsqlQuery['id'];
             $flag = 1;
 
             // $sqlInsert = "INSERT INTO invitacion (asistente,evento,asistencia,fecha_registro,idQr) VALUES ('$id','$evento','$flag','$fecha_sistema','$qr')";
-            $sqlUpdate = "UPDATE invitacion SET checkin = '$flag' WHERE curp = '$cadena'";
+            $sqlUpdate = "UPDATE invitacion SET checkin = '$flag' WHERE email = '$cadena'";
             $resultadoSqlInsert = $conn->query($sqlUpdate);
 
             if($resultadoSqlInsert){
