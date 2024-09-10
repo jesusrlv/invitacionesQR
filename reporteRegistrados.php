@@ -17,9 +17,10 @@
         <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>CURP</th>
-            <th>Teléfono</th>
-            <th>email</th>
+            <th>Tipo invitación</th>
+            <th>municipio</th>
+            <th>Edad</th>
+            <th>Email</th>
         </tr>
     ';
     $x=0;
@@ -28,9 +29,10 @@
         echo '
         <tr>
             <td>'.$x.'</td>
-            <td>'.utf8_decode($rowSQL['nombre']).'</td>
-            <td>'.strtoupper($rowSQL['curp']).'</td>
-            <td>'.$rowSQL['telefono'].'</td>
+            <td>'.$rowSQL['nombre'].'</td>
+            <td>'.strtoupper($rowSQL['tipoInvitacion']).'</td>
+            <td>'.$rowSQL['municipio'].'</td>
+            <td>'.$rowSQL['edad'].'</td>
             <td>'.$rowSQL['email'].'</td>
         </tr>
         ';
