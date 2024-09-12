@@ -71,8 +71,20 @@
                         <img src="img/logo_injuventud_01.png" width="20%">
                         <div class="container">
                             <h5 class="card-title"><i class="bi bi-person-fill-add"></i> Formulario de asistentes</h5>
+                            <button type="button" class="btn btn-warning" onclick="nuevoAsistente()" id="nuevoBtn">
+                              <i class="bi bi-person-plus"></i> 
+                              Nuevo registro
+                            </button>
                             <p class="card-text">Se va a generar un QR como invitación para los asistentes.</p>
                             <div class="container-fluid responsive" id="formulario">
+                              
+                              <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope"></i></span>
+                                <input type="email" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" id="email">
+                            </div>
+                            <div id="result-username" class="text-start mb-2"></div>
+                            <div id="result-username2" class="text-start mb-2"></div>
+
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-list-stars"></i></span>
                                     <select class="form-select" aria-label="Default select example" id="tipoInvitacion">
@@ -107,6 +119,7 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar4-week"></i></i></span>
                                     <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Fecha de nacimiento" aria-describedby="basic-addon1" id="fecha">
+                                    <span class="input-group-text" id="basic-addon2">Fecha de nacimiento</span>
                                 </div>
                                 
 
@@ -118,24 +131,19 @@
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-telephone-fill"></i></span>
                                     <input type="text" class="form-control" placeholder="Teléfono" aria-label="Username" aria-describedby="basic-addon1" id="telefono" >
                                 </div> -->
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope"></i></span>
-                                    <input type="email" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" id="email">
+                              
+                                <div id="botones">
+                                  <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-primary" onclick="saveAsistente()" id="registroBtn" disabled>
+                                      <i class="bi bi-person-plus"></i> 
+                                      Registrarse
+                                    </button>
+                                  </div>
                                 </div>
-                                <div id="result-username" class="text-start mb-1"></div>
-                                <div id="result-username2" class="text-start mb-1"></div>
+
                             </div>
                           </label>
-                          <div id="botones">
-                            <button type="button" class="btn btn-warning" onclick="nuevoAsistente()" id="nuevoBtn">
-                              <i class="bi bi-person-plus"></i> 
-                              Nuevo registro
-                            </button>
-                            <button type="button" class="btn btn-primary" onclick="saveAsistente()" id="registroBtn" disabled>
-                              <i class="bi bi-person-plus"></i> 
-                              Registrarse
-                            </button>
-                          </div>
+                         
                           <div class="container-fluid mt-5">
                             <label class="m-auto" id="qr">
                           </div>
@@ -324,7 +332,7 @@ $(document).ready(function() {
             url: "verificacion3.php",
             data: dataString,
             success: function(data) {
-                $('#result-username').fadeIn(20).html(data);
+                $('#result-username').html(data);
                 // document.getElementById('registroBtn').disabled=true;
 
             }
