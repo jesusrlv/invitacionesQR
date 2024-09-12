@@ -31,6 +31,9 @@
     #centrar{
       justify-content: right;
     }
+    #imgMin{
+     fill: #45689d;
+    }
     @media screen and (max-width: 600px) {
     .responsive{
         width: 100%;
@@ -41,9 +44,7 @@
     #textoMin{
       font-size: 12px;
     }
-    #imgMin{
-     fill: #45689d;
-    }
+   
     #imgMin1{
       width: 12px;
       height: 12px;
@@ -89,7 +90,7 @@
                 <a class="navbar-brand text-light" href="#"><i class="bi bi-award-fill text-warning"></i> PEJ2024</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active text-light" aria-current="page" href="#"><i class="bi bi-houses-fill"></i> Web oficial</a>
+                    <a class="nav-link active text-light" aria-current="page" href="https://juventud.zacatecas.gob.mx"><i class="bi bi-houses-fill"></i> Web oficial</a>
                   </li>
                   
                 </ul>
@@ -278,17 +279,28 @@
                     var verificador = jsonData.success;
                     if (verificador = 1){
                     document.getElementById('registroBtn').disabled=true;
+                    generarQR();
+                    
                     Swal.fire({
                         icon: 'success',
                         imageUrl: 'img/logo_injuventud_01.png',
                         imageHeight: 200,
                         imageAlt: 'INJUVENTUD',
                         title: 'Asistente guadado',
-                        html: 'Copia tu QR para utilizarlo el día del evento',
+                        html: '<p>Descarga tu QR para utilizarlo el día del evento</p><p><label id="qrV"></label></p><button id="downloadQR" class="swal2-confirm swal2-styled" style="background-color:#c80578">Descargar QR</button>',
+                        didOpen: () => {
+                          // Aquí puedes ejecutar el script que necesites al abrir la alerta
+                         generarQR2();
+                          // Código o script a ejecutar
+                          // Añadir evento para descargar el QR
+                        document.getElementById("downloadQR").addEventListener("click", function() {
+                            downloadQRCode();
+                        });
+                        },
                         confirmButtonColor: '#3085d6',
                         footer: 'INJUVENTUD'
                     }); 
-                    generarQR();
+                    // generarQR();
                     document.getElementById('tipoInvitacion').disabled=true;
                     document.getElementById('name').disabled=true;
                     document.getElementById('municipios').disabled=true;
@@ -391,6 +403,18 @@ var qrcode = new QRCode(document.getElementById("qr"), {
       correctLevel: QRCode.CorrectLevel.H
     });
 }
+function generarQR2(){
+  var texto = document.getElementById('email').value;
+
+var qrcode = new QRCode(document.getElementById("qrV"), {
+      text: texto,
+      width: 200,
+      height: 200,
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    
+}
     
 // VALIDA USUARIO REGISTRADO
  
@@ -461,6 +485,33 @@ $(document).ready(function() {
         });
     });              
 });  
+
+function downloadQRCode() {
+    // Obtener el canvas generado por el QR
+    let canvas = document.querySelector("#qrV canvas");// Crear un nuevo canvas con padding y fondo blanco
+    var padding = 20;  // Ajusta este valor para cambiar el padding
+    var newCanvas = document.createElement('canvas');
+    var ctx = newCanvas.getContext('2d');
+    
+    // Definir las dimensiones del nuevo canvas, incluyendo el padding
+    newCanvas.width = canvas.width + padding * 2;
+    newCanvas.height = canvas.height + padding * 2;
+
+    // Dibujar el fondo blanco
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, newCanvas.width, newCanvas.height);
+
+    // Dibujar el QR en el nuevo canvas, centrado con el padding
+    ctx.drawImage(canvas, padding, padding);
+
+    // Crear un enlace temporal para descargar el nuevo canvas como imagen
+    var downloadLink = document.createElement("a");
+    downloadLink.href = newCanvas.toDataURL("image/png"); // Convertir el nuevo canvas a imagen
+    downloadLink.download = "QR_Code_INJUVENTUD_PEJ2024.png";  // Nombre del archivo de descarga
+
+    // Simular el clic para descargar
+    downloadLink.click();
+}
 
 function municipio() {
   $.ajax({
