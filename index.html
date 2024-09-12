@@ -22,6 +22,15 @@
     .responsive{
         width: 75%;
     }
+    #petitAnuncio1{
+      visibility: collapse;
+    }
+    #petitAnuncio2{
+      visibility: visible;
+    }
+    #centrar{
+      justify-content: right;
+    }
     @media screen and (max-width: 600px) {
     .responsive{
         width: 100%;
@@ -29,6 +38,31 @@
     #logoPremio{
       width: 100%;
     }
+    #textoMin{
+      font-size: 12px;
+    }
+    #imgMin{
+     fill: #45689d;
+    }
+    #imgMin1{
+      width: 12px;
+      height: 12px;
+    }
+    #imgMin2{
+      width: 12px;
+      height: 12px;
+    }
+    #petitAnuncio1{
+      visibility:visible;
+    }
+    #petitAnuncio2{
+      visibility:hidden;
+      margin-top: -30px;
+    }
+    #centrar{
+      justify-content: center;
+    }
+
       }
 </style>
   <!-- Enlaza Bootstrap CSS (asegúrate de haberlo descargado o enlaza a una CDN) --> 
@@ -52,10 +86,10 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand text-light" href="#">PEJ2024</a>
+                <a class="navbar-brand text-light" href="#"><i class="bi bi-award-fill text-warning"></i> PEJ2024</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active text-light" aria-current="page" href="#">Web oficial</a>
+                    <a class="nav-link active text-light" aria-current="page" href="#"><i class="bi bi-houses-fill"></i> Web oficial</a>
                   </li>
                   
                 </ul>
@@ -77,7 +111,7 @@
                           <a class="nav-link active" id="btnUno" aria-current="true" href="#" onclick="hiddenF()"><i class="bi bi-ui-checks-grid"></i> Formulario</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#" id="btnDos" onclick="noHidden()">Buscar QR</a>
+                          <a class="nav-link" href="#" id="btnDos" onclick="noHidden()"><i class="bi bi-qr-code-scan"></i> Buscar QR</a>
                         </li>
                         
                       </ul>
@@ -89,13 +123,19 @@
                       </div>
                         <div class="container">
                             <h5 class="card-title"><i class="bi bi-person-fill-add"></i> Formulario de asistentes</h5>
-                            <button type="button" class="btn btn-warning" onclick="nuevoAsistente()" id="nuevoBtn">
-                              <i class="bi bi-person-plus"></i> 
-                              Nuevo registro
-                            </button>
                             <p class="card-text">Se va a generar un QR como invitación para los asistentes.</p>
                             <div class="container-fluid responsive" id="formulario">
                               
+
+                              <div id="botones" class="mb-3">
+                                <div class="d-grid gap-2">
+                                  <button type="button" class="btn btn-warning" onclick="nuevoAsistente()" id="nuevoBtn">
+                                    <i class="bi bi-person-plus"></i> 
+                                    Nuevo registro
+                                  </button>
+                                </div>
+                              </div>
+
                               <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope"></i></span>
                                 <input type="email" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" id="email">
@@ -137,19 +177,10 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar4-week"></i></i></span>
                                     <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Fecha de nacimiento" aria-describedby="basic-addon1" id="fecha">
-                                    <span class="input-group-text" id="basic-addon2">Fecha de nacimiento</span>
+                                    <span class="input-group-text"  id="petitAnuncio2">Fecha de nacimiento</span>
+                                    <div class="form-text" id="petitAnuncio1">Fecha de nacimiento</div>
                                 </div>
-                                
-
-                                <!-- <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-regex"></i></span>
-                                    <input type="text" class="form-control" placeholder="CURP" aria-label="Username" aria-describedby="basic-addon1" onchange="validarInput(this);" id="curp" >
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-telephone-fill"></i></span>
-                                    <input type="text" class="form-control" placeholder="Teléfono" aria-label="Username" aria-describedby="basic-addon1" id="telefono" >
-                                </div> -->
-                              
+                            
                                 <div id="botones">
                                   <div class="d-grid gap-2">
                                     <button type="button" class="btn btn-primary" onclick="saveAsistente()" id="registroBtn" disabled>
@@ -197,13 +228,13 @@
               <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
                 <img src="img/logo_injuventud_01.png" width="30" height="auto">
               </a>
-              <span class="mb-3 mb-md-0 text-primary">&copy; 2024 INJUVENTUD | GODEZAC</span>
+              <span class="mb-3 mb-md-0 text-primary" id="textoMin">&copy; 2024 INJUVENTUD | GODEZAC</span>
             </div>
             <div class="col-md-6 col-sm-12 text-end">
-              <ul class="nav col-md-12 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-light" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-                <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+              <ul class="nav col-md-12 list-unstyled d-flex" id="centrar">
+                <li class="ms-3"><a class="text-body-secondary" href="https://twitter.com/INJUVENTUD_zac" target="_blank"><svg class="bi text-light" width="24" height="24" id="imgMin"><use xlink:href="#twitter"/></svg></a></li>
+                <li class="ms-3"><a class="text-body-secondary" href="https://www.instagram.com/injuventud.zac?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><svg class="bi" width="24" height="24" id="imgMin"><use xlink:href="#instagram"/></svg></a></li>
+                <li class="ms-3"><a class="text-body-secondary" href="https://www.facebook.com/injuventud.zac" target="_blank"><svg class="bi" width="24" height="24" id="imgMin"><use xlink:href="#facebook"/></svg></a></li>
               </ul>
             </div>
           </div> 
