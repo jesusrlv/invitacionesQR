@@ -15,7 +15,7 @@
 
   <script src="QR/ajax_generate_code.js"></script>
 
-  <title>Formulario de Registro | PEJ2024</title>
+  <title>Formulario de Registro | PEJ2025</title>
 
 </head>
 <style>
@@ -67,7 +67,7 @@
       }
 </style>
   <!-- Enlaza Bootstrap CSS (asegúrate de haberlo descargado o enlaza a una CDN) --> 
-    <body onload="municipio()" style="background: url(img/background_pej2024.jpg);background-size: cover;background-repeat: no-repeat;">
+    <body onload="municipio()" style="background: url(img/fondo_pej2025.png);background-size: cover;background-repeat: no-repeat;">
       <!-- symbols -->
       <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="facebook" viewBox="0 0 16 16">
@@ -87,7 +87,7 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand text-light" href="#"><i class="bi bi-award-fill text-warning"></i> PEJ2024</a>
+                <a class="navbar-brand text-light" href="#"><i class="bi bi-award-fill text-warning"></i> PEJ2025</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                     <a class="nav-link active text-light" aria-current="page" href="https://juventud.zacatecas.gob.mx"><i class="bi bi-houses-fill"></i> Web oficial</a>
@@ -120,7 +120,7 @@
                     <form action="">
                     <div class="card-body">
                       <div class="container p-5">
-                        <img src="img/logo_pej2024.png" width="50%" id="logoPremio">
+                        <img src="img/logo_pej2025_01.png" width="50%" id="logoPremio">
                       </div>
                         <div class="container">
                             <h5 class="card-title"><i class="bi bi-person-fill-add"></i> Formulario de asistentes</h5>
@@ -148,12 +148,12 @@
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-list-stars"></i></span>
                                     <select class="form-select" aria-label="Default select example" id="tipoInvitacion">
                                       <option value="" selected>Selecciona el tipo de acceso ...</option>
-                                      <option value="Participante PEJ2024">Participante PEJ2024</option>
-                                      <option value="Jurado PEJ2024">Jurado PEJ2024</option>
+                                      <option value="Participante PEJ2025">Participante PEJ2025</option>
+                                      <option value="Jurado PEJ2025">Jurado PEJ2025</option>
                                       <option value="Miembro del Gabinete GODEZAC">Miembro del Gabinete GODEZAC</option>
                                       <option value="Instancia Municipal de la Juventud">Instancia Municipal de la Juventud</option>
                                       <option value="Institución educativa">Institución educativa</option>
-                                      <option value="Invitado especial">Invitado</option>
+                                      <option value="Invitado">Invitado</option>
                                       <option value="Presidencia Municipal">Presidencia Municipal</option>
                                      
                                     </select>
@@ -229,7 +229,7 @@
               <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
                 <img src="img/logo_injuventud_01.png" width="30" height="auto">
               </a>
-              <span class="mb-3 mb-md-0 text-primary" id="textoMin">&copy; 2024 INJUVENTUD | GODEZAC</span>
+              <span class="mb-3 mb-md-0 text-primary" id="textoMin">&copy; 2025 INJUVENTUD | GODEZAC</span>
             </div>
             <div class="col-md-6 col-sm-12 text-end">
               <ul class="nav col-md-12 list-unstyled d-flex" id="centrar">
@@ -511,7 +511,7 @@ function downloadQRCode() {
     // Crear un enlace temporal para descargar el nuevo canvas como imagen
     var downloadLink = document.createElement("a");
     downloadLink.href = newCanvas.toDataURL("image/png"); // Convertir el nuevo canvas a imagen
-    downloadLink.download = "QR_Code_INJUVENTUD_PEJ2024.png";  // Nombre del archivo de descarga
+    downloadLink.download = "QR_Code_INJUVENTUD_PEJ2025.png";  // Nombre del archivo de descarga
 
     // Simular el clic para descargar
     downloadLink.click();
@@ -528,3 +528,8 @@ function municipio() {
 });
 }
 </script>
+
+<!-- echo json_encode(array(
+  'success' => 1,
+  'tipoInvitado'=>$rowUpdate['tipoInvitacion']
+)); -->
