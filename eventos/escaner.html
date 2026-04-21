@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Sistema de Check-in con Escáner Newland</title>
+    <title>Sistema de Check-in con Escáner INJUVENTUD</title>
     
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -273,7 +273,7 @@
     <div class="container">
         <div class="header">
             <h1>📱 Sistema de Check-in</h1>
-            <p>Escáner Newland - Presiona el gatillo para escanear</p>
+            <p>Escáner INJUVENTUD - Presiona el gatillo para escanear</p>
         </div>
         
         <div class="content">
@@ -290,7 +290,7 @@
                             <line x1="12" y1="8" x2="12" y2="16"></line>
                             <circle cx="12" cy="12" r="2" fill="#4CAF50"></circle>
                         </svg>
-                        <h3>Escáner Newland Listo</h3>
+                        <h3>Escáner INJUVENUD Listo</h3>
                         <p>✅ Enfoque el código QR o código de barras<br>🔘 Presione el gatillo para escanear<br>📊 El resultado se procesará automáticamente</p>
                         <div class="badge">
                             <span class="status-indicator active"></span>
@@ -334,7 +334,7 @@
         </div>
         
         <div class="footer">
-            Sistema de check-in con escáner Newland | INJUVENTUD 2026
+            Sistema de check-in con escáner | INJUVENTUD 2026
         </div>
     </div>
     
@@ -498,60 +498,7 @@
             });
             
             
-            // === DEMO: Simulación para pruebas (eliminar cuando uses tu backend) ===
-            console.log('📤 Enviando al servidor:', cleanCode);
             
-            setTimeout(() => {
-                let simulatedResponse = {};
-                
-                if (cleanCode === 'TEST123' || cleanCode === '123456') {
-                    simulatedResponse = { success: "1", message: "Check-in exitoso" };
-                } else if (cleanCode === 'REPEAT' || cleanCode === '999999') {
-                    simulatedResponse = { success: "0", message: "Ya registrado" };
-                } else if (cleanCode === 'INVALID' || cleanCode === '000000') {
-                    simulatedResponse = { success: "3", message: "QR inválido" };
-                } else {
-                    simulatedResponse = { success: "1", message: "Check-in exitoso" };
-                    $("#checkDiv").html(`
-                        <div style="margin-top:15px; padding:15px; background:#d4edda; border-radius:8px; border-left:4px solid #28a745;">
-                            <strong>✅ Registro exitoso</strong><br>
-                            Código: ${cleanCode}<br>
-                            Fecha: ${new Date().toLocaleString()}
-                        </div>
-                    `);
-                }
-                
-                if (simulatedResponse.success === "0") {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'No se realizó el registro',
-                        html: 'Asistente previamente registrado<br>Ya existe el registro a este evento',
-                        timer: 2000,
-                        timerProgressBar: true
-                    });
-                } else if (simulatedResponse.success === "1") {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Registro correcto',
-                        text: 'Has hecho checkin para el PEJ2026',
-                        footer: 'INJUVENTUD | 2026',
-                        timer: 2000,
-                        timerProgressBar: true
-                    });
-                } else if (simulatedResponse.success === "3") {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'QR NO VÁLIDO',
-                        text: 'Credenciales incorrectas',
-                        footer: 'INJUVENTUD | 2026',
-                        timer: 2000,
-                        timerProgressBar: true
-                    });
-                }
-                
-                setTimeout(() => { isProcessing = false; }, 500);
-            }, 100);
-            // === FIN DEMO ===
             
             // Limpiar el input oculto para la siguiente lectura
             const hiddenInput = document.getElementById('hiddenScannerInput');
@@ -634,7 +581,7 @@
                 }
             });
             
-            console.log('✅ Escáner Newland inicializado correctamente');
+            console.log('✅ Escáner INJUVENTUD inicializado correctamente');
             return finalInput;
         }
         
@@ -673,7 +620,7 @@
             Swal.fire({
                 icon: 'success',
                 title: 'Escáner Listo',
-                text: 'Presiona el gatillo del Newland para escanear',
+                text: 'Presiona el gatillo del dispositivo para escanear',
                 timer: 1500,
                 showConfirmButton: false
             });

@@ -8,43 +8,34 @@
         $evento = $_POST['evento'];
         $cadena = $_POST['c'];
 
-        $sql = "SELECT * FROM asistentes WHERE idQr = '$cadena'";
+        $sql = "SELECT * FROM invitacion WHERE email = '$cadena'";
         $resultadoSql = $conn->query($sql);
         $rowQuery = $resultadoSql->fetch_assoc();
 
-        // semestre
-        $semestre = $rowQuery['semestre'];
-        $sqlSemestre = "SELECT * FROM semestre WHERE id = '$semestre'";
-        $resultadoSemestre = $conn->query($sqlSemestre);
-        $rowSemestre = $resultadoSemestre->fetch_assoc();
-
-        // carrera
-        $carrera = $rowQuery['carrera'];
-        $sqlCarrera = "SELECT * FROM programa WHERE id = '$carrera'";
-        $resultadoCarrera = $conn->query($sqlCarrera);
-        $rowCarrera = $resultadoCarrera->fetch_assoc();
-
         echo'
-        <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <div style="margin-top:15px; padding:15px; background:#d4edda; border-radius:8px; border-left:4px solid #28a745;">
+            <h4 style="color:#155724; margin-bottom:10px;">¡Check-in exitoso!</h4>
+            <p class="pb-3 mb-0 small lh-sm border-bottom">
               <strong class="d-block text-gray-dark">Nombre completo:</strong>
-              '.$rowQuery['nombre'].' '.$rowQuery['apellidos'].'
+              '.$rowQuery['nombre'].'
             </p>
             <p class="pb-3 mt-3 mb-0 small lh-sm border-bottom">
-              <strong class="d-block text-gray-dark">Semestre:</strong>
-              '.$rowQuery['semestre'].'
+              <strong class="d-block text-gray-dark">Municipio:</strong>
+              '.$rowQuery['municipio'].'
             </p>
             <p class="pb-3 mt-3 mb-0 small lh-sm border-bottom">
-              <strong class="d-block text-gray-dark">Grupo:</strong>
-              '.$rowQuery['grupo'].'
+              <strong class="d-block text-gray-dark">Edad:</strong>
+              '.$rowQuery['edad'].'
             </p>
             <p class="pb-3 mt-3 mb-0 small lh-sm border-bottom">
-              <strong class="d-block text-gray-dark">Carrera:</strong>
-              '.$rowQuery['carrera'].'
+              <strong class="d-block text-gray-dark">Email:</strong>
+              '.$rowQuery['email'].'
             </p>
             <p class="pb-3 mt-3 mb-0 small lh-sm border-bottom">
-              <strong class="d-block text-gray-dark">Número de control:</strong>
-              '.$rowQuery['numero_control'].'
+              <strong class="d-block text-gray-dark">Email:</strong>
+              '.$rowQuery['email'].'
             </p>
+        </div>
         ';
 
 ?>
