@@ -14,7 +14,7 @@
   <script src="script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-  <title>Reporte de invitados | PEJ2023</title>
+  <title>Reporte de invitados | </title>
 
   <style>
     * {
@@ -495,7 +495,7 @@
           <div class="logo-circle mx-auto">
             <i class="bi bi-award-fill"></i>
           </div>
-          <div class="logo-text">PEJ2023</div>
+          <div class="logo-text">Listado</div>
         </a>
 
         <div class="nav-links-right">
@@ -548,7 +548,7 @@
       <div class="row g-3 align-items-center">
         <div class="col-md-4">
           <div class="footer-brand mb-1">
-            <i class="bi bi-award-fill me-2"></i>PEJ2023
+            <i class="bi bi-award-fill me-2"></i>Listado
           </div>
           <p class="small" style="color:#94a3b8;">Premio Estatal de la Juventud · INJUVENTUD GODEZAC</p>
         </div>
@@ -672,25 +672,31 @@
     });  
 
     function eliminarRegistro(reg){
-        $.ajax({
-            type:"POST",
-            url:"eliminar.php",
-            data:{
-                reg:reg
-            },
-            dataType: "JSON",
-            success: function(data) {
-                var jsonData = JSON.parse(JSON.stringify(data));
-                var verificador = jsonData.success;
-                if (verificador == 1){
-                    console.log('Registro eliminado');
-                    saveAsistente();
-                }
-                else{
-                    console.log('No se eliminó el registro');
-                }
-            }               
-        });
+      let result = confirm("¿Borrar este registro?");
+      if(result){
+          $.ajax({
+              type:"POST",
+              url:"eliminar.php",
+              data:{
+                  reg:reg
+              },
+              dataType: "JSON",
+              success: function(data) {
+                  var jsonData = JSON.parse(JSON.stringify(data));
+                  var verificador = jsonData.success;
+                  if (verificador == 1){
+                      console.log('Registro eliminado');
+                      saveAsistente();
+                  }
+                  else{
+                      console.log('No se eliminó el registro');
+                  }
+              }               
+          });
+        }
+        else{
+          alert("No se eliminó el registro");
+        }
     }
 
     // Funciones adicionales para compatibilidad
