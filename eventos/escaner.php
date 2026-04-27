@@ -280,7 +280,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📱 Sistema de Check-in</h1>
+            <h3>📱 Sistema de Check-in <br>(<span id="eventoScan"></span>)</h3>
             <p>Escáner INJUVENTUD - Presiona el gatillo para escanear</p>
         </div>
         
@@ -731,6 +731,22 @@
         window.abrirScanner = abrirScanner;
         window.cerrarScanner = cerrarScanner;
         window.procesarCodigoEscaneado = procesarCodigoEscaneado;
+        
+        function evento() {
+            let evento = document.getElementById('hiddenScannerInput').value;
+            $.ajax({
+                type: "POST",
+                url: "prcd/nombreEvento.php",
+                data: {
+                    evento: evento
+                },
+                dataType: "json",
+                success: function(response) {
+                    document.getElementById('eventoScan').innerText = response.nombre_evento;
+                }
+            });
+        }
+        evento();
     </script>
 </body>
 </html>
