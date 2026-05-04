@@ -407,7 +407,7 @@
     }
   </style>
 </head>
-<body onload="municipio();">
+<body onload="municipio();bloquearCuenta('Universidad de Durango');">
 
   <!-- BARRA DE MENÚ ESTILO NAVCORE -->
   <nav class="navbar-central">
@@ -480,15 +480,9 @@
               <div class="input-group-modern d-flex">
                 <span class="input-group-text"><i class="bi bi-list-stars"></i></span>
                 <select class="form-select" id="tipoInvitacion">
-                  <option value="" selected>Selecciona el tipo de acceso ...</option>
-                  <option value="UAZ">UAZ</option>
+                  
                   <option value="Universidad de Durango">Universidad de Durango</option>
-                  <option value="Tec Milenio">Tec Milenio</option>
-                  <option value="Instituto Tecnológico de Zacatecas">Instituto Tecnológico de Zacatecas</option>
-                  <option value="UTZAC">UTZAC</option>
-                  <option value=" Gabinete invitados especiales"> Gabinete invitados especiales</option>
-                  <option value="Instancias municipales">Instancias municipales</option>
-                  <option value="Público en general">Público en general</option>
+                  
                 </select>
               </div>
             </div>
@@ -592,6 +586,7 @@
   </footer>
 
   <!-- SCRIPTS ORIGINALES CON MODAL PARA BÚSQUEDA -->
+   <script src="script.js"></script>
   <script src="QR/ajax_generate_code.js"></script>
   <script>
     // Función para mostrar modal con QR (similar al del registro)

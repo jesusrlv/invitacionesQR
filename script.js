@@ -61,3 +61,25 @@ function guardarEditar(){
 
 }
 
+// bloqueos de cada cuenta
+function bloquearCuenta(id){
+    $.ajax({
+        type:"POST",
+        url:"queryBloquear.php",
+        data:{
+            id:id
+        },
+        dataType: 'json',
+        success: function(response) {
+            // var jsonData = JSON.parse(JSON.stringify(response));
+
+          if (response.success == 1){
+            alert("Los accesos QR se han terminado, gracias por tu participación");
+            document.getElementById("registroBtn").disabled = true;
+          }
+          else if(response.success == 0){
+            console.log("Aún hay accesos disponibles: " + response.num);
+          }
+        }
+    });
+}

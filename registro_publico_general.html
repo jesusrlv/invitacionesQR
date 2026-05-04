@@ -479,15 +479,6 @@
               <label class="form-label-custom"><i class="bi bi-list-stars"></i> Tipo de acceso</label>
               <div class="input-group-modern d-flex">
                 <span class="input-group-text"><i class="bi bi-list-stars"></i></span>
-                <select class="form-select" id="tipoInvitacion">
-                  <option value="" selected>Selecciona el tipo de acceso ...</option>
-                  <option value="UAZ">UAZ</option>
-                  <option value="Universidad de Durango">Universidad de Durango</option>
-                  <option value="Tec Milenio">Tec Milenio</option>
-                  <option value="Instituto Tecnológico de Zacatecas">Instituto Tecnológico de Zacatecas</option>
-                  <option value="UTZAC">UTZAC</option>
-                  <option value=" Gabinete invitados especiales"> Gabinete invitados especiales</option>
-                  <option value="Instancias municipales">Instancias municipales</option>
                   <option value="Público en general">Público en general</option>
                 </select>
               </div>
@@ -570,7 +561,7 @@
       <div class="row g-4 align-items-center">
         <div class="col-md-4">
           <div class="footer-brand mb-2">
-            <i class="bi bi-award-fill me-2"></i>Invitaciones QR
+            <i class="bi bi-award-fill me-2"></i>PEJ2025
           </div>
           <p class="small" style="color:#94a3b8;">Premio Estatal de la Juventud · INJUVENTUD GODEZAC</p>
         </div>
@@ -741,25 +732,57 @@
       }
     }
 
-    function generarQR(codigo){
-      var texto = codigo;
-      new QRCode(document.getElementById("qr"), {
-        text: texto,
-        width: 250,
-        height: 250,
-        correctLevel: QRCode.CorrectLevel.H
-      });
+    function generarQR(codigo) {
+  var texto = codigo;
+  
+  QRCode.toCanvas(document.getElementById("qr"), texto, {
+    width: 250,
+    height: 250,
+    margin: 2,
+    errorCorrectionLevel: 'H'
+  }, function(error, canvas) {
+    if (error) {
+      console.error(error);
+      return;
     }
+    
+    // Agregar logo al canvas existente
+    var ctx = canvas.getContext('2d');
+    var logo = new Image();
+    
+    logo.onload = function() {
+      var logoSize = 60;
+      var logoX = (canvas.width - logoSize) / 2;
+      var logoY = (canvas.height - logoSize) / 2;
+      
+      // Fondo blanco circular
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2 + 3, 0, 2 * Math.PI);
+      ctx.fill();
+      
+      // Dibujar logo
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2, 0, 2 * Math.PI);
+      ctx.clip();
+      ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
+      ctx.restore();
+    };
+    
+    logo.src = 'img/logo_oso_trava.png'; // Cambia por la ruta de tu logo
+  });
+}
 
-    function generarQR2(codigo){
-      var texto = codigo;
-      new QRCode(document.getElementById("qrV"), {
-        text: texto,
-        width: 180,
-        height: 180,
-        correctLevel: QRCode.CorrectLevel.H
-      });
-    }
+function generarQR2(codigo) {
+  var texto = codigo;
+  new QRCode(document.getElementById("qrV"), {
+    text: texto,
+    width: 180,
+    height: 180,
+    correctLevel: QRCode.CorrectLevel.H
+  });
+}
 
     function downloadQRCode() {
       let canvas = document.querySelector("#qrV canvas");
@@ -774,7 +797,7 @@
       ctx.drawImage(canvas, padding, padding);
       var downloadLink = document.createElement("a");
       downloadLink.href = newCanvas.toDataURL("image/png");
-      downloadLink.download = "QR_Code_INJUVENTUD_PEJ2025.png";
+      downloadLink.download = "QR_Code_oso_trava_2026.png";
       downloadLink.click();
     }
 
@@ -859,5 +882,11 @@
       });
     });
   </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+<!-- O si usas la versión antigua -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
 </body>
 </html>
