@@ -734,47 +734,15 @@
       }
     }
 
-    function generarQR(codigo) {
-  var texto = codigo;
-  
-  QRCode.toCanvas(document.getElementById("qr"), texto, {
-    width: 250,
-    height: 250,
-    margin: 2,
-    errorCorrectionLevel: 'H'
-  }, function(error, canvas) {
-    if (error) {
-      console.error(error);
-      return;
+    function generarQR(codigo){
+      var texto = codigo;
+      new QRCode(document.getElementById("qr"), {
+        text: texto,
+        width: 250,
+        height: 250,
+        correctLevel: QRCode.CorrectLevel.H
+      });
     }
-    
-    // Agregar logo al canvas existente
-    var ctx = canvas.getContext('2d');
-    var logo = new Image();
-    
-    logo.onload = function() {
-      var logoSize = 60;
-      var logoX = (canvas.width - logoSize) / 2;
-      var logoY = (canvas.height - logoSize) / 2;
-      
-      // Fondo blanco circular
-      ctx.fillStyle = '#FFFFFF';
-      ctx.beginPath();
-      ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2 + 3, 0, 2 * Math.PI);
-      ctx.fill();
-      
-      // Dibujar logo
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2, 0, 2 * Math.PI);
-      ctx.clip();
-      ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
-      ctx.restore();
-    };
-    
-    logo.src = 'img/logo_oso_trava.png'; // Cambia por la ruta de tu logo
-  });
-}
 
 function generarQR2(codigo) {
   var texto = codigo;
@@ -884,11 +852,6 @@ function generarQR2(codigo) {
       });
     });
   </script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
-<!-- O si usas la versión antigua -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
 </body>
 </html>
