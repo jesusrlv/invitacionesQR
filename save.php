@@ -9,6 +9,9 @@
     $email = $_POST['email'];
     $evento = 1;
     $checkin = 0;
+    
+    // Generar cadena alfanumérica única
+    $codigoUnico = uniqid() . bin2hex(random_bytes(8));
 
     $sql = "INSERT INTO invitacion (
             tipoInvitacion,
@@ -18,7 +21,8 @@
             fechaNacimiento,
             email,
             evento,
-            checkin
+            checkin,
+            codigo_unico
             )
         VALUES (
         '$tipoInvitacion',
@@ -28,12 +32,16 @@
         '$fecha',
         '$email',
         '$evento',
-        '$checkin'
+        '$checkin',
+        '$codigoUnico'
         )";
     $resultado = $conn->query($sql);
     
     if($resultado){
-        echo json_encode(array('success'=>1));
+        echo json_encode(array(
+            'success'=>1,
+            'codigo'=> $codigoUnico
+        ));
     }
     else{
         $error = $conn->error;

@@ -11,7 +11,7 @@ if (isset($_POST)) {
     
     if ($result->num_rows > 0) {
         $rowCURP = $result->fetch_assoc();
-        $curp = $rowCURP['email'];
+        $curp = $rowCURP['codigo_unico'];
         echo json_encode(array(
             'curp' => $curp,
         'success' => 1));
