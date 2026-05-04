@@ -76,20 +76,26 @@ function bloquearCuenta(id){
           if (response.success == 1){
             // alert("Los accesos QR se han terminado, gracias por tu participación");
             Swal.fire({
-                icon: 'warning',
-                title: '¡Atención!',
-                text: 'No quedan accesos disponibles para esta cuenta. Gracias por tu interés y participación.',
-                imageUrl: 'img/logo_injuventud_01.png',
-                imageHeight: 150,
-                imageAlt: 'INJUVENTUD',
-                confirmButtonText: 'Entendido',
-                confirmButtonColor: '#f39c12', // Naranja/ámbar para advertencia
-                background: '#fff9e6', // Fondo ligeramente amarillento
-                iconColor: '#f39c12', // Color del ícono de advertencia
-                customClass: {
-                popup: 'swal-warning-custom',
-                title: 'swal-warning-title',
-                confirmButton: 'swal-warning-button'
+              icon: 'warning',
+              title: '¡Atención!',
+              text: 'No quedan accesos disponibles para esta cuenta. Gracias por tu interés y participación.',
+              imageUrl: 'img/logo_injuventud_01.png',
+              imageHeight: 150,
+              imageAlt: 'INJUVENTUD',
+              confirmButtonText: 'Entendido',
+              confirmButtonColor: '#f39c12',
+              background: '#fff9e6',
+              iconColor: '#f39c12',
+              customClass: {
+                  popup: 'swal-warning-custom',
+                  title: 'swal-warning-title',
+                  confirmButton: 'swal-warning-button'
+              }
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  // Redireccionar al link que quieras
+                  window.location.href = 'https://juventud.zacatecas.gob.mx';
+                  // O si es dentro del mismo sitio: window.location.href = '/pagina-destino';
               }
           });
             document.getElementById("registroBtn").disabled = true;
