@@ -676,9 +676,9 @@
           },
           dataType: "json",
           success: function(data) {
-            var jsonData = JSON.parse(JSON.stringify(data));
-            var verificador = jsonData.success;
-            let codigo = jsonData.codigo;
+            // var jsonData = JSON.parse(JSON.stringify(data));
+            var verificador = data.success;
+            let codigo = data.codigo;
             if (verificador == 1) {
               document.getElementById('registroBtn').disabled = true;
               generarQR(codigo);
