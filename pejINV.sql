@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-05-2026 a las 22:47:50
+-- Tiempo de generación: 05-05-2026 a las 22:55:41
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.4.28
 
@@ -466,14 +466,24 @@ INSERT INTO `invitacion` (`id`, `tipoInvitacion`, `nombre`, `municipio`, `edad`,
 (459, 'Participante PEJ2025', 'sdsdsdsdsdsd', 'Miguel Auza', 222, '2026-04-22', 'ssss@dsdsd', 1, '', 0),
 (460, 'Instituto Tecnológico de Zacatecas', 'jesus', 'Zacatecas', 33, '2026-05-04', 'jesusrlvrojo2@gmail.com', 1, '', 0),
 (461, 'UAZ', 'ssdd', 'Apozol', 22, '2026-05-12', 'dssds@dsdsd.com', 1, '69f8cc479a97d266bbdf9919be9f1', 0),
-(462, 'Tec Milenio', 'dfdsfsdf', 'Miguel Auza', 222, '2026-05-28', 'dfasfasd@dfsadfsdaf', 1, '69f8cd557a8a2b6ce754a9fdf7f99', 0),
-(463, 'Tec Milenio', 'sdsdsd', 'Mazapil', 22, '2026-05-16', 'dd@dsdsssss', 1, '69f8cd734765212e8ed43cbbd932a', 0),
-(464, 'Tec Milenio', 'dssdsd', 'Luis Moya', 2221, '2026-05-15', 'dsdsdsswe', 1, '69f8cdb29f197d890f99a7fde95c9', 0),
-(465, 'Tec Milenio', 'dssdsd', 'Melchor Ocampo', 2221, '2026-05-15', 'dsdsdsswedd', 1, '69f8df032b778882af6cf1077cff9', 0),
-(466, 'Universidad de Durango', 'zcfasfcsf', 'Loreto', 122, '2026-05-18', 'dssdds222', 1, '69f8df1869cf0df3f20116b8e31b4', 0),
-(467, 'Tec Milenio', '22321', 'General Pánfilo Natera', 122, '2026-05-14', 'dsdsdsd222211', 1, '69f8df67029442849b5eeb949cbf6', 0),
-(468, 'Tec Milenio', '22321', 'Concepción del Oro', 122, '2026-05-14', 'dsdsdsd2222112', 1, '69f8dfc49960fdee2fc31207a8644', 0),
-(469, 'Universidad de Durango', 'e', 'Miguel Auza', 1, '2026-05-05', 'wwe', 1, '69f8dfda835be3d1f5116235f18fd', 0);
+(525, 'Público en general', '233', 'Fresnillo', 21, '2026-05-09', '2322', 1, '69fa4f774859fbef1f64b9000596d', 0),
+(526, 'Público en general', '233', 'Genaro Codina', 21, '2026-05-09', '23222', 1, '69fa4fe412cd0c33dfb94f5dd5514', 0),
+(527, 'Público en general', '233', 'Huanusco', 21, '2026-05-09', '232222', 1, '69fa4ffbb40d2840831da16e8360e', 0),
+(528, 'Público en general', '233', 'El Plateado de Joaquín Amaro', 21, '2026-05-09', '232222w', 1, '69fa50380122c5846466b4e45a5b2', 0),
+(529, 'Público en general', 'w', 'General Enrique Estrada', 1, '2026-05-03', 'w', 1, '69fa5043e1ce8d299e58843096a83', 0),
+(530, 'Público en general', 'ww', 'Cuauhtémoc', 112, '2026-05-11', 'ww', 1, '69fa5165a262a3781e7ebd447c52f', 0),
+(531, 'Público en general', 'ww', 'Huanusco', 112, '2026-05-11', 'ww2', 1, '69fa518e6975e53450cde870c77d3', 0),
+(532, 'Público en general', 'ww', 'Jerez', 112, '2026-05-11', 'ww22', 1, '69fa51a4a619d6d654ed64247233f', 0),
+(533, 'Universidad de Durango', 'dssdsd', 'Juchipila', 21, '2026-05-06', '4334', 1, '69fa5436d2572604497fa6c7e63a0', 0),
+(534, 'Universidad de Durango', 'dssdsd', 'Jalpa', 21, '2026-05-06', '43342', 1, '69fa54982e6d78065313476ddc1a4', 1),
+(535, 'Gabinete', '2221', 'Miguel Auza', 12, '2026-05-27', 'dsd2', 1, '69fa55f7c15cbd0df7b50fd8ba80c', 1),
+(536, 'Instituto Tecnológico de Zacatecas', '123223', 'Juan Aldama', 12, '2026-05-27', '223', 1, '69fa563ca3ed61846e5f579207632', 1),
+(537, 'Tec Milenio', '322', 'Melchor Ocampo', 12, '2026-05-04', '222', 1, '69fa56881623e4d6d463034b884fe', 0),
+(538, 'Tec Milenio', '322', 'Juchipila', 12, '2026-05-04', '2222', 1, '69fa56da440082e87161921533993', 1),
+(539, 'UAZ', 'sdsdsd', 'Momax', 1, '2026-05-27', 'ssdsd', 1, '69fa571f2f7511fb24770f6af1916', 1),
+(540, 'UNID', 'adfasfrsdf', 'Melchor Ocampo', 122, '2026-05-27', '2211323', 1, '69fa576e08b5cf761d673e75ebb18', 0),
+(541, 'UTZAC', 'sadadasd', 'Mezquital del Oro', 112, '2026-05-14', 'dsdsd', 1, '69fa586755990bde3d3665f764de7', 1),
+(542, 'UVC', 'q333', 'Melchor Ocampo', 1, '2026-05-27', 'dsdsdsqwqw', 1, '69fa589eb83585906a649ee2a6865', 1);
 
 -- --------------------------------------------------------
 
@@ -485,7 +495,7 @@ CREATE TABLE `lista_invitados` (
   `id` int(11) NOT NULL,
   `nombre` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `color` int(11) DEFAULT NULL
+  `color` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -493,16 +503,17 @@ CREATE TABLE `lista_invitados` (
 --
 
 INSERT INTO `lista_invitados` (`id`, `nombre`, `cantidad`, `color`) VALUES
-(1, 'UAZ', 150, NULL),
-(2, 'Universidad de Durango', 1, NULL),
-(3, 'Tec Milenio', 100, NULL),
-(4, 'Instituto Tecnológico de Zacatecas', 50, NULL),
-(5, 'UTZAC', 100, NULL),
-(6, 'UNID', 50, NULL),
-(7, 'UVC', 50, NULL),
-(8, 'Gabinete invitados especiales', 100, NULL),
-(9, 'Instancias municipales', 100, NULL),
-(10, 'Público en general', 218, NULL);
+(1, 'UAZ', 150, '4B75FF'),
+(2, 'Universidad de Durango', 50, '4A446E'),
+(3, 'Tec Milenio', 100, '319976'),
+(4, 'Instituto Tecnológico de Zacatecas', 50, 'ED3DD9'),
+(5, 'UTZAC', 100, 'ED8A00'),
+(6, 'UNID', 50, 'BA31ED'),
+(7, 'UVC', 50, '6E5437'),
+(8, 'Gabinete', 100, 'EDC900'),
+(9, 'Instancias municipales', 100, '6E5F37'),
+(10, 'Público en general', 11, 'ED1400'),
+(11, 'Invitados especiales', 50, 'EDD11C');
 
 -- --------------------------------------------------------
 
@@ -621,13 +632,13 @@ ALTER TABLE `eventos`
 -- AUTO_INCREMENT de la tabla `invitacion`
 --
 ALTER TABLE `invitacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=470;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543;
 
 --
 -- AUTO_INCREMENT de la tabla `lista_invitados`
 --
 ALTER TABLE `lista_invitados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `municipio`
