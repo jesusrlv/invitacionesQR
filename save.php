@@ -13,6 +13,11 @@
     // Generar cadena alfanumérica única
     $codigoUnico = uniqid() . bin2hex(random_bytes(8));
 
+    $sqlColor = "SELECT color FROM lista_invitados WHERE nombre = '$tipoInvitacion'";
+    $resultadoColor = $conn->query($sqlColor);
+    $rowColor = $resultadoColor->fetch_assoc();
+    $color = $rowColor['color'];
+
     $sql = "INSERT INTO invitacion (
             tipoInvitacion,
             nombre,
@@ -40,7 +45,8 @@
     if($resultado){
         echo json_encode(array(
             'success'=>1,
-            'codigo'=> $codigoUnico
+            'codigo'=> $codigoUnico,
+            'color'=> $color
         ));
     }
     else{

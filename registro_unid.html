@@ -677,12 +677,13 @@
           },
           dataType: "json",
           success: function(data) {
-            var jsonData = JSON.parse(JSON.stringify(data));
-            var verificador = jsonData.success;
-            let codigo = jsonData.codigo;
+            // var jsonData = JSON.parse(JSON.stringify(data));
+            var verificador = data.success;
+            let codigo = data.codigo;
+            let color = data.color;
             if (verificador == 1) {
               document.getElementById('registroBtn').disabled = true;
-              generarQR(codigo);
+              // generarQR(codigo);
               Swal.fire({
                 icon: 'success',
                 imageUrl: 'img/logo_injuventud_01.png',
@@ -691,7 +692,7 @@
                 title: 'Asistente guardado',
                 html: '<p>Descarga tu QR para utilizarlo el día del evento</p><p><label id="qrV"></label></p><button id="downloadQR" class="swal2-confirm swal2-styled" style="background-color:#c80578">Descargar QR</button>',
                 didOpen: () => {
-                  generarQR2(codigo);
+                  generarQR2(codigo, color);
                   document.getElementById("downloadQR").addEventListener("click", function() {
                     downloadQRCode();
                   });
@@ -735,25 +736,124 @@
       }
     }
 
-    function generarQR(codigo){
-      var texto = codigo;
-      new QRCode(document.getElementById("qr"), {
-        text: texto,
-        width: 250,
-        height: 250,
-        correctLevel: QRCode.CorrectLevel.H
-      });
-    }
+    // function generarQR(codigo){
+    //   var texto = codigo;
+    //   new QRCode(document.getElementById("qr"), {
+    //     text: texto,
+    //     width: 250,
+    //     height: 250,
+    //     correctLevel: QRCode.CorrectLevel.H
+    //   });
+    // }
 
-    function generarQR2(codigo){
-      var texto = codigo;
-      new QRCode(document.getElementById("qrV"), {
-        text: texto,
-        width: 180,
-        height: 180,
-        correctLevel: QRCode.CorrectLevel.H
-      });
-    }
+    function generarQR2(codigo, color, logoUrl = 'img/logo_oso_trava.png') {
+  var textoPersonalizado = "Recuerda llegar a las 8:30hs para el registro. Sé puntual.";
+  var texto = codigo;
+  var container = document.getElementById("qrV");
+  
+  // Limpiar contenedor
+  container.innerHTML = '';
+  
+  // Crear contenedor para el QR y el texto
+  var wrapper = document.createElement('div');
+  wrapper.style.display = 'flex';
+  wrapper.style.flexDirection = 'column';
+  wrapper.style.alignItems = 'center';
+  wrapper.style.justifyContent = 'center';
+  wrapper.style.width = '100%';
+  
+  // Crear elemento para el QR
+  var qrDiv = document.createElement('div');
+  qrDiv.style.display = 'flex';
+  qrDiv.style.justifyContent = 'center';
+  qrDiv.style.alignItems = 'center';
+  qrDiv.style.position = 'relative';
+  
+  // Generar QR en el div
+  new QRCode(qrDiv, {
+    text: texto,
+    width: 360,
+    height: 360,
+    correctLevel: QRCode.CorrectLevel.H,
+    colorDark: "#" + color,
+    colorLight: "#FFFFFF"
+  });
+  
+  // Esperar a que el QR se genere y luego agregar el logo
+  setTimeout(function() {
+  var canvas = qrDiv.querySelector('canvas');
+  var img = qrDiv.querySelector('img');
+
+  if (img) img.remove(); // 🔥 elimina QR duplicado
+
+  if (canvas) {
+    canvas.style.display = 'block';
+    canvas.style.margin = '0 auto';
+    agregarLogoAlQR(canvas, logoUrl);
+  }
+}, 100);
+  
+  // Crear elemento para el texto
+  var textElement = document.createElement('p');
+  textElement.textContent = textoPersonalizado;
+  textElement.style.marginTop = '10px';
+  textElement.style.fontSize = '12px';
+  textElement.style.fontFamily = 'Arial, sans-serif';
+  textElement.style.color = '#333';
+  textElement.style.fontWeight = 'bold';
+  textElement.style.textAlign = 'center';
+  textElement.style.width = '80%';
+  
+  // Agregar todo al contenedor
+  wrapper.appendChild(qrDiv);
+  wrapper.appendChild(textElement);
+  container.appendChild(wrapper);
+}
+
+// Función para agregar logo al centro del QR
+function agregarLogoAlQR(canvas, logoUrl) {
+  var ctx = canvas.getContext('2d');
+  var logo = new Image();
+  
+  logo.onload = function() {
+    // Tamaño del logo (25% del tamaño del QR)
+    var logoSize = canvas.width * 0.25;
+    var logoX = (canvas.width - logoSize) / 2;
+    var logoY = (canvas.height - logoSize) / 2;
+    
+    // Dibujar fondo blanco circular detrás del logo
+    ctx.save();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = '#FFFFFF';
+    ctx.beginPath();
+    ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2 + 5, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    // Dibujar borde alrededor del fondo
+    ctx.strokeStyle = "#" + canvas.colorQR || "#CCCCCC";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2 + 3, 0, 2 * Math.PI);
+    ctx.stroke();
+    
+    // Dibujar el logo (recortado circular)
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2, 0, 2 * Math.PI);
+    ctx.clip();
+    ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
+    ctx.restore();
+    
+    // Opcional: agregar un pequeño brillo o sombra
+    ctx.shadowBlur = 0;
+  };
+  
+  logo.onerror = function() {
+    console.warn('No se pudo cargar el logo:', logoUrl);
+  };
+  
+  logo.src = logoUrl;
+}
 
     function downloadQRCode() {
       let canvas = document.querySelector("#qrV canvas");
