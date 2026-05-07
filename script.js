@@ -63,6 +63,7 @@ function guardarEditar(){
 
 // bloqueos de cada cuenta
 function bloquearCuenta(id){
+    $("#registroBtn, #nuevoBtn", "#email").prop("disabled", true);
     $.ajax({
         type:"POST",
         url:"queryBloquear.php",
@@ -71,38 +72,37 @@ function bloquearCuenta(id){
         },
         dataType: 'json',
         success: function(response) {
-            // var jsonData = JSON.parse(JSON.stringify(response));
-
-          if (response.success == 1){
-            // alert("Los accesos QR se han terminado, gracias por tu participación");
-            Swal.fire({
-              icon: 'warning',
-              title: '¡Atención!',
-              text: 'No quedan accesos disponibles para esta cuenta. Gracias por tu interés y participación.',
-              imageUrl: 'img/logo_injuventud_01.png',
-              imageHeight: 150,
-              imageAlt: 'INJUVENTUD',
-              confirmButtonText: 'Entendido',
-              confirmButtonColor: '#f39c12',
-              background: '#fff9e6',
-              iconColor: '#f39c12',
-              customClass: {
-                  popup: 'swal-warning-custom',
-                  title: 'swal-warning-title',
-                  confirmButton: 'swal-warning-button'
-              }
-          }).then((result) => {
-              if (result.isConfirmed) {
-                  // Redireccionar al link que quieras
-                  window.location.href = 'https://juventud.zacatecas.gob.mx';
-                  // O si es dentro del mismo sitio: window.location.href = '/pagina-destino';
-              }
-          });
-            document.getElementById("registroBtn").disabled = true;
-          }
-          else if(response.success == 0){
-            console.log("Aún hay accesos disponibles: " + response.num);
-          }
+            if (response.success == 1){
+                $("#registroBtn, #nuevoBtn", "#email").prop("disabled", true);
+                
+                Swal.fire({
+                    icon: 'warning',
+                    title: '¡Atención!',
+                    text: 'No quedan accesos disponibles para esta cuenta. Gracias por tu participación.',
+                    imageUrl: 'img/logo_injuventud_01.png',
+                    imageHeight: 150,
+                    imageAlt: 'INJUVENTUD',
+                    confirmButtonText: 'Entendido',
+                    confirmButtonColor: '#f39c12',
+                    background: '#fff9e6',
+                    iconColor: '#f39c12',
+                    allowOutsideClick: true,  // ✅ Permite cerrar con clic fuera
+                    allowEscapeKey: true,      // ✅ Permite cerrar con ESC
+                    customClass: {
+                        popup: 'swal-warning-custom',
+                        title: 'swal-warning-title',
+                        confirmButton: 'swal-warning-button'
+                    }
+                }).then((result) => {
+                    // ⭐ REDIRIGIRÁ SIEMPRE, sin importar cómo se cierre
+                    // Tanto si presiona "Entendido" como si cierra con ESC o clic fuera
+                    window.location.href = 'https://juventud.zacatecas.gob.mx';
+                });
+            }
+            else if(response.success == 0){
+                console.log("Aún hay accesos disponibles: " + response.num);
+                $("#registroBtn, #nuevoBtn").prop("disabled", false);
+            }
         }
     });
 }

@@ -17,7 +17,7 @@
   <!-- Popper + Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-  
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -461,7 +461,7 @@
             </div>
 
             <div class="d-grid mb-3">
-              <button type="button" class="btn btn-warning-custom" onclick="nuevoAsistente()" id="nuevoBtn">
+              <button type="button" class="btn btn-warning-custom" onclick="nuevoAsistente()" id="nuevoBtn" disabled>
                 <i class="bi bi-person-plus"></i> Nuevo registro
               </button>
             </div>
@@ -479,9 +479,8 @@
               <label class="form-label-custom"><i class="bi bi-list-stars"></i> Tipo de acceso</label>
               <div class="input-group-modern d-flex">
                 <span class="input-group-text"><i class="bi bi-list-stars"></i></span>
-                <select class="form-select" id="tipoInvitacion">
+                <select class="form-select" id="tipoInvitacion" disabled>
                   <option value="Público en general">Público en general</option>
-                </select>
                 </select>
               </div>
             </div>
@@ -490,7 +489,7 @@
               <label class="form-label-custom"><i class="bi bi-person-fill"></i> Nombre completo</label>
               <div class="input-group-modern d-flex">
                 <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                <input type="text" class="form-control" placeholder="Nombre completo" id="name">
+                <input type="text" class="form-control" placeholder="Nombre completo" id="name" disabled>
               </div>
             </div>
 
@@ -498,7 +497,7 @@
               <label class="form-label-custom"><i class="bi bi-globe-americas"></i> Municipio</label>
               <div class="input-group-modern d-flex">
                 <span class="input-group-text"><i class="bi bi-globe-americas"></i></span>
-                <select class="form-select" id="municipios"></select>
+                <select class="form-select" id="municipios" disabled></select>
               </div>
             </div>
 
@@ -507,23 +506,19 @@
                 <label class="form-label-custom"><i class="bi bi-123"></i> Edad</label>
                 <div class="input-group-modern d-flex">
                   <span class="input-group-text"><i class="bi bi-123"></i></span>
-                  <input type="text" class="form-control" placeholder="Edad" id="edad">
+                  <input type="text" class="form-control" placeholder="Edad" id="edad" disabled>
                 </div>
               </div>
               <div class="col-md-6">
                 <label class="form-label-custom"><i class="bi bi-calendar4-week"></i> Fecha de nacimiento</label>
                 <div class="input-group-modern d-flex">
                   <span class="input-group-text"><i class="bi bi-calendar4-week"></i></span>
-                  <input type="date" class="form-control" id="fecha">
+                  <input type="date" class="form-control" id="fecha" disabled>
                 </div>
               </div>
             </div>
 
-            <div class="d-grid mt-4">
-              <button type="button" class="btn btn-primary-custom" onclick="saveAsistente()" id="registroBtn" disabled>
-                <i class="bi bi-person-plus"></i> Registrarse
-              </button>
-            </div>
+            
 
             <div class="text-center mt-4" id="qr"></div>
           </div>
@@ -584,389 +579,25 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS ORIGINALES CON MODAL PARA BÚSQUEDA -->
-  <script src="QR/ajax_generate_code.js"></script>
-  <script src="script.js"></script>
-  <script>
-    // Función para mostrar modal con QR (similar al del registro)
-    function mostrarModalQRConDescarga(textoQR, titulo = "QR encontrado") {
-      // Crear un contenedor temporal para generar el QR
-      const tempDiv = document.createElement('div');
-      tempDiv.id = 'tempQRModal';
-      tempDiv.style.position = 'absolute';
-      tempDiv.style.left = '-9999px';
-      document.body.appendChild(tempDiv);
-      
-      new QRCode(tempDiv, {
-        text: textoQR,
-        width: 200,
-        height: 200,
-        correctLevel: QRCode.CorrectLevel.H
-      });
-      
-      // Esperar un momento para que se genere el canvas
-      setTimeout(() => {
-        const canvas = tempDiv.querySelector('canvas');
-        let qrImageData = '';
-        if (canvas) {
-          // Añadir padding blanco
-          const padding = 20;
-          const newCanvas = document.createElement('canvas');
-          const ctx = newCanvas.getContext('2d');
-          newCanvas.width = canvas.width + padding * 2;
-          newCanvas.height = canvas.height + padding * 2;
-          ctx.fillStyle = "#ED1400";
-          ctx.fillRect(0, 0, newCanvas.width, newCanvas.height);
-          ctx.drawImage(canvas, padding, padding);
-          qrImageData = newCanvas.toDataURL("image/png");
-        }
-        
-        // Limpiar elemento temporal
-        document.body.removeChild(tempDiv);
-        
-        // Mostrar SweetAlert2 con el QR
-        Swal.fire({
-          icon: 'success',
-          imageUrl: 'img/logo_injuventud_01.png',
-          imageHeight: 100,
-          imageAlt: 'INJUVENTUD',
-          title: titulo,
-          html: `<p>QR generado para el invitado</p>
-                 <div style="background:white; padding:10px; border-radius:20px; display:inline-block;">
-                   <img id="qrModalImage" src="${qrImageData}" style="width:200px; height:200px;">
-                 </div>
-                 <div class="mt-3"><button id="downloadQRModal" class="swal2-confirm swal2-styled" style="background-color:#2c7da0; margin:0 auto;">Descargar QR</button></div>`,
-          showConfirmButton: false,
-          showCancelButton: true,
-          cancelButtonText: 'Cerrar',
-          cancelButtonColor: '#64748b',
-          didOpen: () => {
-            document.getElementById("downloadQRModal").addEventListener("click", function() {
-              const link = document.createElement('a');
-              link.download = 'QR_invitado_PEJ2025.png';
-              link.href = qrImageData;
-              link.click();
-            });
-          }
-        });
-      }, 100);
-    }
-
-    function saveAsistente(){
-      var tipoInvitacion = document.getElementById('tipoInvitacion').value;
-      var nombre = document.getElementById('name').value;
-      var municipios = document.getElementById('municipios').value;
-      var edad = document.getElementById('edad').value;
-      var fecha = document.getElementById('fecha').value;
-      var email = document.getElementById('email').value;
-      
-      if (tipoInvitacion == "" || nombre == "" || municipios == "" || edad == "" || fecha == "" || email == ""){
-        alert("Hay campos vacíos, llena todos los datos");
-      } else {
-        document.getElementById('registroBtn').disabled = false;
-        $.ajax({
-          type: "POST",
-          url: "save.php",
-          data: {
-            tipoInvitacion: tipoInvitacion,
-            nombre: nombre,
-            municipios: municipios,
-            edad: edad,
-            fecha: fecha,
-            email: email
-          },
-          dataType: "json",
-          success: function(data) {
-            // var jsonData = JSON.parse(JSON.stringify(data));
-            var verificador = data.success;
-            let codigo = data.codigo;
-            let color = data.color;
-            if (verificador == 1) {
-              document.getElementById('registroBtn').disabled = true;
-              // generarQR(codigo);
-              Swal.fire({
-                icon: 'success',
-                imageUrl: 'img/logo_injuventud_01.png',
-                imageHeight: 150,
-                imageAlt: 'INJUVENTUD',
-                title: 'Asistente guardado',
-                html: '<p>Descarga tu QR para utilizarlo el día del evento</p><p><label id="qrV"></label></p><button id="downloadQR" class="swal2-confirm swal2-styled" style="background-color:#c80578">Descargar QR</button>',
-                didOpen: () => {
-                  generarQR2(codigo, color);
-                  document.getElementById("downloadQR").addEventListener("click", function() {
-                    downloadQRCode();
-                  });
-                },
-                confirmButtonColor: '#3085d6',
-                footer: 'INJUVENTUD'
-              });
-              document.getElementById('tipoInvitacion').disabled = true;
-              document.getElementById('name').disabled = true;
-              document.getElementById('municipios').disabled = true;
-              document.getElementById('edad').disabled = true;
-              document.getElementById('fecha').disabled = true;
-              document.getElementById('email').disabled = true;
-            } else if (verificador == 0) {
-              Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo guardar', timer: 1500, showConfirmButton: false });
-            }
-          }
-        });
-      }
-    }
-
-    function nuevoAsistente(){
-      document.getElementById('qr').innerHTML = "";
-      document.getElementById('qr2').innerHTML = "";
-      document.getElementById('tipoInvitacion').value = "";
-      document.getElementById('name').value = "";
-      document.getElementById('municipios').value = "";
-      document.getElementById('edad').value = "";
-      document.getElementById('fecha').value = "";
-      document.getElementById('email').value = "";
-      document.getElementById('curpSearch').value = "";
-      document.getElementById('tipoInvitacion').disabled = false;
-      document.getElementById('name').disabled = false;
-      document.getElementById('municipios').disabled = false;
-      document.getElementById('edad').disabled = false;
-      document.getElementById('fecha').disabled = false;
-      document.getElementById('email').disabled = false;
-      var elements = document.getElementsByClassName("resultado");
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].innerHTML = "";
-      }
-    }
-
-    function generarQR(codigo, color){
-      var texto = codigo;
-      new QRCode(document.getElementById("qr"), {
-        text: texto,
-        width: 250,
-        height: 250,
-        correctLevel: QRCode.CorrectLevel.H,
-        color: color,  // Color de los módulos del QR
-        background: "#FFFFFF"
-      });
-    }
-
-// function generarQR2(codigo, color) {
-//   var texto = codigo;
-//   new QRCode(document.getElementById("qrV"), {
-//     text: texto,
-//     width: 180,
-//     height: 180,
-//     correctLevel: QRCode.CorrectLevel.H,
-//     colorDark: "#" + color,  // Color de los módulos del QR
-//     colorLight: "#FFFFFF"   // Color de fondo
-//   });
-// }
-
-function generarQR2(codigo, color, logoUrl = 'img/logo_oso_trava.png') {
-  var textoPersonalizado = "Recuerda llegar a las 8:30hs para el registro. Sé puntual.";
-  var texto = codigo;
-  var container = document.getElementById("qrV");
-  
-  // Limpiar contenedor
-  container.innerHTML = '';
-  
-  // Crear contenedor para el QR y el texto
-  var wrapper = document.createElement('div');
-  wrapper.style.display = 'flex';
-  wrapper.style.flexDirection = 'column';
-  wrapper.style.alignItems = 'center';
-  wrapper.style.justifyContent = 'center';
-  wrapper.style.width = '100%';
-  
-  // Crear elemento para el QR
-  var qrDiv = document.createElement('div');
-  qrDiv.style.display = 'flex';
-  qrDiv.style.justifyContent = 'center';
-  qrDiv.style.alignItems = 'center';
-  qrDiv.style.position = 'relative';
-  
-  // Generar QR en el div
-  new QRCode(qrDiv, {
-    text: texto,
-    width: 297,
-    height: 297,
-    correctLevel: QRCode.CorrectLevel.H,
-    colorDark: "#" + color,
-    colorLight: "#FFFFFF"
-  });
-  
-  // Esperar a que el QR se genere y luego agregar el logo
-  setTimeout(function() {
-  var canvas = qrDiv.querySelector('canvas');
-  var img = qrDiv.querySelector('img');
-
-  if (img) img.remove(); // 🔥 elimina QR duplicado
-
-  if (canvas) {
-    canvas.style.display = 'block';
-    canvas.style.margin = '0 auto';
-    agregarLogoAlQR(canvas, logoUrl);
-  }
-}, 100);
-  
-  // Crear elemento para el texto
-  var textElement = document.createElement('p');
-  textElement.textContent = textoPersonalizado;
-  textElement.style.marginTop = '10px';
-  textElement.style.fontSize = '12px';
-  textElement.style.fontFamily = 'Arial, sans-serif';
-  textElement.style.color = '#333';
-  textElement.style.fontWeight = 'bold';
-  textElement.style.textAlign = 'center';
-  textElement.style.width = '80%';
-  
-  // Agregar todo al contenedor
-  wrapper.appendChild(qrDiv);
-  wrapper.appendChild(textElement);
-  container.appendChild(wrapper);
-}
-
-// Función para agregar logo al centro del QR
-function agregarLogoAlQR(canvas, logoUrl) {
-  var ctx = canvas.getContext('2d');
-  var logo = new Image();
-  
-  logo.onload = function() {
-    // Tamaño del logo (25% del tamaño del QR)
-    var logoSize = canvas.width * 0.25;
-    var logoX = (canvas.width - logoSize) / 2;
-    var logoY = (canvas.height - logoSize) / 2;
-    
-    // Dibujar fondo blanco circular detrás del logo
-    ctx.save();
-    ctx.shadowBlur = 0;
-    ctx.fillStyle = '#FFFFFF';
-    ctx.beginPath();
-    ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2 + 5, 0, 2 * Math.PI);
-    ctx.fill();
-    
-    // Dibujar borde alrededor del fondo
-    ctx.strokeStyle = "#" + canvas.colorQR || "#CCCCCC";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2 + 3, 0, 2 * Math.PI);
-    ctx.stroke();
-    
-    // Dibujar el logo (recortado circular)
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2, 0, 2 * Math.PI);
-    ctx.clip();
-    ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
-    ctx.restore();
-    
-    // Opcional: agregar un pequeño brillo o sombra
-    ctx.shadowBlur = 0;
-  };
-  
-  logo.onerror = function() {
-    console.warn('No se pudo cargar el logo:', logoUrl);
-  };
-  
-  logo.src = logoUrl;
-}
-
-    function downloadQRCode() {
-      let canvas = document.querySelector("#qrV canvas");
-      if(!canvas) return;
-      var padding = 20;
-      var newCanvas = document.createElement('canvas');
-      var ctx = newCanvas.getContext('2d');
-      newCanvas.width = canvas.width + padding * 2;
-      newCanvas.height = canvas.height + padding * 2;
-      ctx.fillStyle = "#FFFFFF";
-      ctx.fillRect(0, 0, newCanvas.width, newCanvas.height);
-      ctx.drawImage(canvas, padding, padding);
-      var downloadLink = document.createElement("a");
-      downloadLink.href = newCanvas.toDataURL("image/png");
-      downloadLink.download = "QR_Code_oso_trava_2026.png";
-      downloadLink.click();
-    }
-
-    function municipio() {
-      $.ajax({
-        type: "POST",
-        url: "municipio.php",
-        dataType: 'html',
-        success: function(data) {
-          $("#municipios").html(data);
-        }
-      });
-    }
-
-    $(document).ready(function() {
-      $('#email').on('blur', function() {
-        var username = $(this).val();
-        var dataString = 'username=' + username;
-        $.ajax({
-          type: "POST",
-          url: "verificacion3.php",
-          data: dataString,
-          success: function(data) {
-            $('#result-username').html(data);
-          }
-        });
-      });
-
-      $('#btnCURP').on('click', function() {
-        var username = document.getElementById('curpSearch').value;
-        if(username.trim() === "") {
-          Swal.fire({ icon: 'warning', title: 'Campo vacío', text: 'Ingresa un email para buscar', timer: 1500 });
-          return;
-        }
-        var dataString = 'username=' + username;
-        $.ajax({
-          type: "POST",
-          url: "verificacion2.php",
-          dataType: "json",
-          data: dataString,
-          success: function(data) {
-            var jsonData = JSON.parse(JSON.stringify(data));
-            var verificador = jsonData.success;
-            if (verificador == 1) {
-              var texto = jsonData.curp;
-              // Mostrar modal con QR (similar al del registro)
-              mostrarModalQRConDescarga(texto, "Invitado encontrado");
-              // También limpiar el div qr2 por si acaso
-              document.getElementById('qr2').innerHTML = "";
-            } else {
-              Swal.fire({
-                icon: 'error',
-                imageUrl: 'img/logo_injuventud_01.png',
-                imageHeight: 100,
-                title: 'No existe el registro del invitado',
-                text: 'Verifica el email ingresado',
-                footer: 'INJUVENTUD'
-              });
-            }
-          },
-          error: function() {
-            Swal.fire({ icon: 'error', title: 'Error', text: 'Hubo un problema al buscar' });
-          }
-        });
-      });
-
-      $('#linkNuevoRegistro, #logoHome').on('click', function(e) {
-        e.preventDefault();
-        nuevoAsistente();
-        var formTab = document.getElementById('formulario-tab');
-        var bsTab = new bootstrap.Tab(formTab);
-        bsTab.show();
-      });
-
-      $('#btnInfo').on('click', function() {
-        Swal.fire({
-          title: 'Evento: Oso Trava',
-          html: 'Sistema de registro y generación de QR para invitados.<br>INJUVENTUD Zacatecas',
-          icon: 'info',
-          confirmButtonColor: '#2c7da0'
-        });
-      });
-    });
-  </script>
-
 </body>
 </html>
+
+<script>
+  Swal.fire({
+  title: '¡Gracias por participar!',
+  text: 'El cupo para el evento se ha llenado.',
+  icon: 'info',
+  confirmButtonText: 'Aceptar',
+  showCancelButton: false,
+  allowEscapeKey: true,
+  allowOutsideClick: true,
+}).then((result) => {
+  if (result.isConfirmed) {
+    // Redirige a página de agradecimiento completo
+    window.location.href = 'https://juventud.zacatecas.gob.mx';
+  } else {
+    // Redirige a página de salida (si cerró con Esc o clic fuera)
+    window.location.href = 'https://juventud.zacatecas.gob.mx';
+  }
+});
+</script>
