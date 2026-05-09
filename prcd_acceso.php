@@ -4,22 +4,24 @@ session_start();
 
 $usuario=$_POST['usr'];
 $pwd=$_POST['pwd'];
-$query="SELECT * FROM usr WHERE usr='$usuario' AND pwd='$pwd'";
+$query="SELECT * FROM usr WHERE user='$usuario' AND pwd='$pwd'";
 $proceso=$conn->query($query);
 $filas = $proceso->num_rows;
-$row = $proceso->fetch_assoc();
 
-    if ($filas == 1) {
+if ($filas == 1) {
+            $row = $proceso->fetch_assoc();
             $_SESSION['id']=$row['id'];
             $_SESSION['usr']=$row['usr'];
             $_SESSION['privilegio']=$row['privilegio'];
             echo json_encode(array(
-                'success' => 1
+                'success' => 1,
+                'perfil' => $row['privilegio']
             ));
         }      
     else if ($filas == 0){
         echo json_encode(array(
-            'success' => 0
+            'success' => 0,
+            'error' => $conn->error
         ));
     }
 ?>
