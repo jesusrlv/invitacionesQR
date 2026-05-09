@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Datos de accesos</title>
+  <title>Reporte de Universidades</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono&display=swap" rel="stylesheet" />
@@ -12,14 +12,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f5f4f0;
+      --bg:      #f5f4f0;
       --surface: #ffffff;
-      --surface2: #f0efe9;
-      --border: rgba(0,0,0,0.08);
+      --surface2:#f0efe9;
+      --border:  rgba(0,0,0,0.08);
       --border2: rgba(0,0,0,0.14);
-      --text: #1a1a18;
-      --text2: #6b6b67;
-      --text3: #9e9e99;
+      --text:    #1a1a18;
+      --text2:   #6b6b67;
+      --text3:   #9e9e99;
       --radius-md: 8px;
       --radius-lg: 12px;
       --font: 'DM Sans', sans-serif;
@@ -62,55 +62,13 @@
     .topbar-title { font-size: 15px; font-weight: 500; color: var(--text); }
     .topbar-sub   { font-size: 12px; color: var(--text3); margin-top: 1px; }
 
-    .topbar-right { display: flex; align-items: center; gap: 8px; }
-
-    .search-box {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--surface2);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 7px 12px;
-    }
-
-    .search-box i { font-size: 15px; color: var(--text3); }
-
-    .search-box input {
-      background: none; border: none; outline: none;
-      font-family: var(--font); font-size: 13px;
-      color: var(--text); width: 200px;
-    }
-
-    .search-box input::placeholder { color: var(--text3); }
-
-    .sort-btn {
-      display: flex; align-items: center; gap: 6px;
-      background: none;
-      border: 0.5px solid var(--border2);
-      border-radius: var(--radius-md);
-      padding: 7px 12px; cursor: pointer;
-      font-family: var(--font); font-size: 13px;
-      color: var(--text2);
-      transition: background 0.12s;
-    }
-
-    .sort-btn:hover { background: var(--surface2); }
-
-    /* ── MAIN CONTENT ── */
+    /* ── MAIN ── */
     .main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
 
     /* ── PAGE HEADER ── */
-    .page-header {
-      margin-bottom: 1.5rem;
-    }
-
-    .page-header h1 {
-      font-size: 22px; font-weight: 500; color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .page-header p {
-      font-size: 13px; color: var(--text2);
-    }
+    .page-header { margin-bottom: 1.5rem; }
+    .page-header h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+    .page-header p  { font-size: 13px; color: var(--text2); }
 
     /* ── STATS ── */
     .stats-row {
@@ -128,24 +86,15 @@
     }
 
     .stat-label {
-      font-size: 11px; font-weight: 500;
-      color: var(--text3);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-size: 11px; font-weight: 500; color: var(--text3);
+      text-transform: uppercase; letter-spacing: 0.06em;
       margin-bottom: 6px;
       display: flex; align-items: center; gap: 5px;
     }
 
     .stat-label i { font-size: 13px; }
-    .stat-value { font-size: 28px; font-weight: 500; color: var(--text); line-height: 1; }
-
-    .stat-delta {
-      font-size: 11px; margin-top: 5px;
-      display: flex; align-items: center; gap: 3px;
-      color: #1D9E75;
-    }
-
-    .stat-delta i { font-size: 12px; }
+    .stat-value   { font-size: 28px; font-weight: 500; color: var(--text); line-height: 1; }
+    .stat-delta   { font-size: 11px; margin-top: 5px; color: #1D9E75; display: flex; align-items: center; gap: 3px; }
 
     /* ── TABLE ── */
     .table-card {
@@ -157,34 +106,28 @@
 
     .table-header {
       display: grid;
-      grid-template-columns: 2.5rem 1fr 160px 110px 110px;
+      grid-template-columns: 2.5rem 1fr 120px 120px 140px;
       gap: 12px;
       padding: 10px 1.25rem;
-      font-size: 11px; font-weight: 500;
-      color: var(--text3);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-size: 11px; font-weight: 500; color: var(--text3);
+      text-transform: uppercase; letter-spacing: 0.06em;
       border-bottom: 0.5px solid var(--border);
     }
 
     .uni-row {
       display: grid;
-      grid-template-columns: 2.5rem 1fr 160px 110px 110px;
+      grid-template-columns: 2.5rem 1fr 120px 120px 140px;
       gap: 12px;
       align-items: center;
       padding: 12px 1.25rem;
       border-bottom: 0.5px solid var(--border);
       transition: background 0.1s;
-      cursor: default;
     }
 
     .uni-row:last-child { border-bottom: none; }
     .uni-row:hover { background: var(--surface2); }
 
-    .uni-num {
-      font-size: 13px; font-weight: 500;
-      color: var(--text3); text-align: center;
-    }
+    .uni-num  { font-size: 13px; font-weight: 500; color: var(--text3); text-align: center; }
 
     .uni-info { display: flex; align-items: center; gap: 10px; min-width: 0; }
 
@@ -194,35 +137,9 @@
       font-size: 11px; font-weight: 500; flex-shrink: 0;
     }
 
-    .uni-name {
-      font-size: 13px; font-weight: 500; color: var(--text);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
+    .uni-name { font-size: 13px; font-weight: 500; color: var(--text); }
 
-    .uni-city { font-size: 11px; color: var(--text3); margin-top: 1px; }
-
-    .uni-phone { font-size: 12px; color: var(--text2); font-family: var(--mono); }
-
-    .uni-date { font-size: 12px; color: var(--text3); }
-
-    .badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 11px; font-weight: 500; padding: 3px 9px;
-      border-radius: var(--radius-md);
-    }
-
-    .badge i { font-size: 11px; }
-    .badge-new  { background: #E1F5EE; color: #085041; }
-    .badge-ver  { background: #E6F1FB; color: #0C447C; }
-
-    .empty-state {
-      display: none;
-      flex-direction: column; align-items: center;
-      padding: 3rem 1rem; gap: 8px;
-      color: var(--text3); font-size: 14px;
-    }
-
-    .empty-state i { font-size: 32px; margin-bottom: 4px; }
+    .uni-cant { font-size: 15px; font-weight: 500; color: var(--text); text-align: right; }
 
     /* ── FOOTER ── */
     footer {
@@ -231,13 +148,7 @@
       display: flex; align-items: center; justify-content: center; gap: 6px;
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
-      .table-header,
-      .uni-row {
-        grid-template-columns: 2rem 1fr 130px;
-      }
-      .col-date, .col-status, .th-date, .th-status { display: none; }
       .search-box input { width: 130px; }
     }
   </style>
@@ -247,23 +158,11 @@
   <!-- TOP BAR -->
   <header class="topbar">
     <div class="topbar-left">
-      <div class="logo-icon">
-        <i class="ti ti-building-community"></i>
-      </div>
+      <div class="logo-icon"><i class="ti ti-building-community"></i></div>
       <div>
-        <div class="topbar-title">Universidades participantes</div>
+        <div class="topbar-title">Directorio de universidades</div>
         <div class="topbar-sub">Registros recibidos del formulario</div>
       </div>
-    </div>
-    <div class="topbar-right">
-      <div class="search-box">
-        <i class="ti ti-search"></i>
-        <input type="text" id="searchInput" placeholder="Buscar universidad..." oninput="filterRows()" />
-      </div>
-      <button class="sort-btn" onclick="toggleSort()">
-        <i class="ti ti-arrows-sort"></i>
-        <span id="sortLabel">A–Z</span>
-      </button>
     </div>
   </header>
 
@@ -272,42 +171,33 @@
 
     <div class="page-header">
       <h1>Universidades registradas</h1>
-      <p>Listado actualizado automáticamente con los datos enviados desde el formulario.</p>
+      <p>Listado actualizado con los datos enviados desde el formulario.</p>
     </div>
 
     <!-- STATS -->
     <div class="stats-row">
       <div class="stat-card">
-        <div class="stat-label"><i class="ti ti-building"></i> Total registradas</div>
-        <div class="stat-value" id="totalCount">8</div>
-        <div class="stat-delta"><i class="ti ti-trending-up"></i> este mes</div>
+        <div class="stat-label"><i class="ti ti-building"></i> Total registros en formulario  </div>
+        <div class="stat-value" id="totalTipos"></div>
+        <div class="stat-delta"><i class="ti ti-refresh"></i> Total de registros</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label"><i class="ti ti-clock"></i> Esta semana</div>
-        <div class="stat-value">3</div>
-        <div class="stat-delta"><i class="ti ti-trending-up"></i> nuevas</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label"><i class="ti ti-map-pin"></i> Estados</div>
-        <div class="stat-value">5</div>
-        <div class="stat-delta" style="color:var(--text3)">representados</div>
+        <div class="stat-label"><i class="ti ti-users"></i> Total CHECK IN en el evento</div>
+        <div class="stat-value" id="totalInv">—</div>
+        <div class="stat-delta" style="color:var(--text3)">Check In</div>
       </div>
     </div>
 
-    <!-- TABLE -->
+    <!-- TABLA -->
     <div class="table-card">
       <div class="table-header">
         <span>#</span>
-        <span>Universidad</span>
-        <span>Teléfono</span>
-        <span class="th-date">Registro</span>
-        <span class="th-status">Estado</span>
+        <span>Tipo de invitación</span>
+        <span style="text-align:right">Cantidad</span>
+        <span style="text-align:right">Check-in</span>
+        <span style="text-align:right">No registrados</span>
       </div>
-      <div id="uniList"></div>
-      <div class="empty-state" id="emptyState">
-        <i class="ti ti-search-off"></i>
-        Sin resultados para esa búsqueda
-      </div>
+      <div id="lista"></div>
     </div>
 
   </main>
@@ -317,90 +207,63 @@
     Información confidencial — solo uso interno
   </footer>
 
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script>
-    const colors = [
-      { bg: '#E1F5EE', txt: '#085041' },
-      { bg: '#E6F1FB', txt: '#0C447C' },
-      { bg: '#EEEDFE', txt: '#3C3489' },
-      { bg: '#FAEEDA', txt: '#633806' },
-      { bg: '#FAECE7', txt: '#712B13' },
-      { bg: '#EAF3DE', txt: '#27500A' },
-    ];
+    $.ajax({
+      url: 'query_datos.php',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
 
-    const data = [
-      { name: 'UNAM',  full: 'Univ. Nacional Autónoma de México',    city: 'Ciudad de México', phone: '+52 55 5622 1616', date: '08 may 2026', status: 'verificada' },
-      { name: 'TEC',   full: 'Tecnológico de Monterrey',             city: 'Monterrey, NL',    phone: '+52 81 8358 2000', date: '07 may 2026', status: 'verificada' },
-      { name: 'UAM',   full: 'Universidad Autónoma Metropolitana',   city: 'Ciudad de México', phone: '+52 55 5483 4000', date: '06 may 2026', status: 'nueva'      },
-      { name: 'UDEG',  full: 'Universidad de Guadalajara',           city: 'Guadalajara, Jal', phone: '+52 33 3134 2222', date: '05 may 2026', status: 'verificada' },
-      { name: 'BUAP',  full: 'Benemérita Univ. Autónoma de Puebla',  city: 'Puebla, Pue',      phone: '+52 22 2229 5500', date: '04 may 2026', status: 'nueva'      },
-      { name: 'UANL',  full: 'Universidad Autónoma de Nuevo León',   city: 'San Nicolás, NL',  phone: '+52 81 8329 4000', date: '03 may 2026', status: 'nueva'      },
-      { name: 'IBERO', full: 'Universidad Iberoamericana',           city: 'Ciudad de México', phone: '+52 55 5950 4000', date: '01 may 2026', status: 'verificada' },
-      { name: 'UV',    full: 'Universidad Veracruzana',              city: 'Xalapa, Ver',      phone: '+52 22 8818 1890', date: '28 abr 2026', status: 'verificada' },
-    ];
+        // Calcular totales
+        var totalInv = 0;
+        for (var i = 0; i < data.length; i++) {
+          totalInv += parseInt(data[i].num);
+        }
+        $('#totalTipos').text(data.length);
+        $('#totalInv').text(totalInv);
 
-    let sorted = 'asc';
-    let currentData = [...data];
+        // Colores de texto para cada avatar (el fondo viene de data[i].color)
+        var colores = [
+          '#085041', '#0C447C', '#3C3489',
+          '#633806', '#712B13', '#27500A'
+        ];
 
-    function initials(name) {
-      return name.slice(0, 2).toUpperCase();
-    }
+        // Pintar filas
+        var html = '';
+        for (var i = 0; i < data.length; i++) {
+          var txtColor  = colores[i % colores.length];
+          var iniciales = data[i].tipoInvitacion.trim().slice(0, 2).toUpperCase();
+          html += '<div class="uni-row">';
+          html += '  <div class="uni-num">' + (i + 1) + '</div>';
+          html += '  <div class="uni-info">';
+          html += '    <div class="uni-avatar" style="background:#' + data[i].color + ';color:' + txtColor + '">' + iniciales + '</div>';
+          html += '    <div class="uni-name">' + data[i].tipoInvitacion + '</div>';
+          html += '  </div>';
+          html += '  <div class="uni-cant">' + data[i].num + '</div>';
+          html += '  <div class="uni-cant">' + data[i].checkin + '</div>';
+          html += '  <div class="uni-cant">' + data[i].no_registrados + '</div>';
+          html += '</div>';
+        }
+        $('#lista').html(html);
 
-    function renderList(arr) {
-      const list = document.getElementById('uniList');
-      const empty = document.getElementById('emptyState');
-      document.getElementById('totalCount').textContent = arr.length;
-
-      if (arr.length === 0) {
-        list.innerHTML = '';
-        empty.style.display = 'flex';
-        return;
       }
+    });
 
-      empty.style.display = 'none';
-      list.innerHTML = arr.map((u, i) => {
-        const c = colors[i % colors.length];
-        const badge = u.status === 'nueva'
-          ? '<span class="badge badge-new"><i class="ti ti-sparkles"></i>Nueva</span>'
-          : '<span class="badge badge-ver"><i class="ti ti-check"></i>Verificada</span>';
-        return `
-          <div class="uni-row">
-            <div class="uni-num">${i + 1}</div>
-            <div class="uni-info">
-              <div class="uni-avatar" style="background:${c.bg};color:${c.txt}">${initials(u.name)}</div>
-              <div>
-                <div class="uni-name">${u.full}</div>
-                <div class="uni-city">${u.city}</div>
-              </div>
-            </div>
-            <div class="uni-phone">${u.phone}</div>
-            <div class="uni-date col-date">${u.date}</div>
-            <div class="col-status">${badge}</div>
-          </div>`;
-      }).join('');
-    }
+    $.ajax({
+      url: 'query_datos_cards.php',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        let totalInvitaciones =  data[0].total_invitaciones || 0;
+        let totalCheckin =  data[0].total_checkin || 0;
+        let totalNoRegistrados =  data[0].total_no_registrados || 0;
+        $('#totalTipos').text(totalInvitaciones);
+        $('#totalInv').text(totalCheckin);
 
-    function filterRows() {
-      const q = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = currentData.filter(u =>
-        u.full.toLowerCase().includes(q) ||
-        u.city.toLowerCase().includes(q) ||
-        u.phone.includes(q)
-      );
-      renderList(filtered);
-    }
-
-    function toggleSort() {
-      sorted = sorted === 'asc' ? 'desc' : 'asc';
-      document.getElementById('sortLabel').textContent = sorted === 'asc' ? 'A–Z' : 'Z–A';
-      currentData.sort((a, b) =>
-        sorted === 'asc'
-          ? a.full.localeCompare(b.full)
-          : b.full.localeCompare(a.full)
-      );
-      filterRows();
-    }
-
-    renderList(currentData);
+      }
+    });
   </script>
+
 </body>
 </html>
