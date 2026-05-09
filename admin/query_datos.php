@@ -9,7 +9,10 @@ $sql = "SELECT
     COUNT(*) AS num
 FROM invitacion 
 INNER JOIN lista_invitados ON invitacion.tipoInvitacion = lista_invitados.nombre 
-GROUP BY invitacion.tipoInvitacion, lista_invitados.color";
+GROUP BY invitacion.tipoInvitacion, lista_invitados.color
+
+ORDER BY lista_invitados.prioridad ASC
+";
 
 $result = $conn->query($sql);
 $data = array();
