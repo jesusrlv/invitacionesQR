@@ -227,8 +227,8 @@ if (!isset($_SESSION['id'])) {
         for (var i = 0; i < data.length; i++) {
           totalInv += parseInt(data[i].num);
         }
-        $('#totalTipos').text(data.length);
-        $('#totalInv').text(totalInv);
+        // $('#totalTipos').text(data.length);
+        // $('#totalInv').text(totalInv);
 
         // Colores de texto para cada avatar (el fondo viene de data[i].color)
         var colores = [
@@ -264,7 +264,7 @@ if (!isset($_SESSION['id'])) {
       success: function(data) {
         let totalInvitaciones =  data[0].total_invitaciones || 0;
         let totalCheckin =  data[0].total_checkin || 0;
-        let totalNoRegistrados =  data[0].total_no_registrados || 0;
+        // let totalNoRegistrados =  data[0].total_no_registrados || 0;
         $('#totalTipos').text(totalInvitaciones);
         $('#totalInv').text(totalCheckin);
 
