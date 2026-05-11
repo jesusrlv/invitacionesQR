@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 05-05-2026 a las 22:55:41
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 11-05-2026 a las 18:23:16
 -- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 7.4.28
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -473,7 +473,7 @@ INSERT INTO `invitacion` (`id`, `tipoInvitacion`, `nombre`, `municipio`, `edad`,
 (529, 'Público en general', 'w', 'General Enrique Estrada', 1, '2026-05-03', 'w', 1, '69fa5043e1ce8d299e58843096a83', 0),
 (530, 'Público en general', 'ww', 'Cuauhtémoc', 112, '2026-05-11', 'ww', 1, '69fa5165a262a3781e7ebd447c52f', 0),
 (531, 'Público en general', 'ww', 'Huanusco', 112, '2026-05-11', 'ww2', 1, '69fa518e6975e53450cde870c77d3', 0),
-(532, 'Público en general', 'ww', 'Jerez', 112, '2026-05-11', 'ww22', 1, '69fa51a4a619d6d654ed64247233f', 0),
+(532, 'Público en general', 'ww', 'Jerez', 112, '2026-05-11', 'ww22', 1, '69fa51a4a619d6d654ed64247233f', 1),
 (533, 'Universidad de Durango', 'dssdsd', 'Juchipila', 21, '2026-05-06', '4334', 1, '69fa5436d2572604497fa6c7e63a0', 0),
 (534, 'Universidad de Durango', 'dssdsd', 'Jalpa', 21, '2026-05-06', '43342', 1, '69fa54982e6d78065313476ddc1a4', 1),
 (535, 'Gabinete', '2221', 'Miguel Auza', 12, '2026-05-27', 'dsd2', 1, '69fa55f7c15cbd0df7b50fd8ba80c', 1),
@@ -495,25 +495,26 @@ CREATE TABLE `lista_invitados` (
   `id` int(11) NOT NULL,
   `nombre` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `color` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+  `color` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `prioridad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `lista_invitados`
 --
 
-INSERT INTO `lista_invitados` (`id`, `nombre`, `cantidad`, `color`) VALUES
-(1, 'UAZ', 150, '4B75FF'),
-(2, 'Universidad de Durango', 50, '4A446E'),
-(3, 'Tec Milenio', 100, '319976'),
-(4, 'Instituto Tecnológico de Zacatecas', 50, 'ED3DD9'),
-(5, 'UTZAC', 100, 'ED8A00'),
-(6, 'UNID', 50, 'BA31ED'),
-(7, 'UVC', 50, '6E5437'),
-(8, 'Gabinete', 100, 'EDC900'),
-(9, 'Instancias municipales', 100, '6E5F37'),
-(10, 'Público en general', 11, 'ED1400'),
-(11, 'Invitados especiales', 50, 'EDD11C');
+INSERT INTO `lista_invitados` (`id`, `nombre`, `cantidad`, `color`, `prioridad`) VALUES
+(1, 'UAZ', 150, '4B75FF', 5),
+(2, 'Universidad de Durango', 50, '4A446E', 6),
+(3, 'Tec Milenio', 100, '319976', 7),
+(4, 'Instituto Tecnológico de Zacatecas', 50, 'ED3DD9', 8),
+(5, 'UTZAC', 100, 'ED8A00', 9),
+(6, 'UNID', 50, 'BA31ED', 10),
+(7, 'UVC', 50, '6E5437', 11),
+(8, 'Gabinete', 100, 'EDC900', 1),
+(9, 'Instancias municipales', 100, '6E5F37', 3),
+(10, 'Público en general', 11, 'ED1400', 4),
+(11, 'Invitados especiales', 50, 'EDD11C', 2);
 
 -- --------------------------------------------------------
 
@@ -590,6 +591,27 @@ INSERT INTO `municipio` (`id`, `municipio`) VALUES
 (57, 'Trancoso'),
 (58, 'Santa María de la Paz');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usr`
+--
+
+CREATE TABLE `usr` (
+  `id` int(11) NOT NULL,
+  `user` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `pwd` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `perfil` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `usr`
+--
+
+INSERT INTO `usr` (`id`, `user`, `pwd`, `perfil`) VALUES
+(1, 'admin', '123456789qwerty', 1),
+(2, 'eventos', '123456789qwerty', 2);
+
 --
 -- Índices para tablas volcadas
 --
@@ -619,6 +641,12 @@ ALTER TABLE `municipio`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `usr`
+--
+ALTER TABLE `usr`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -645,6 +673,12 @@ ALTER TABLE `lista_invitados`
 --
 ALTER TABLE `municipio`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- AUTO_INCREMENT de la tabla `usr`
+--
+ALTER TABLE `usr`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
