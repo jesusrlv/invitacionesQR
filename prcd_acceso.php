@@ -1,6 +1,6 @@
 <?php
-include('conn.php');
 session_start();
+include('conn.php');
 
 $usuario=$_POST['usr'];
 $pwd=$_POST['pwd'];
