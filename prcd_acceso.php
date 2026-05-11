@@ -11,11 +11,11 @@ $filas = $proceso->num_rows;
 if ($filas == 1) {
             $row = $proceso->fetch_assoc();
             $_SESSION['id']=$row['id'];
-            $_SESSION['usr']=$row['usr'];
-            $_SESSION['privilegio']=$row['privilegio'];
+            $_SESSION['usr']=$row['user'];
+            $_SESSION['privilegio']=$row['perfil'];
             echo json_encode(array(
                 'success' => 1,
-                'perfil' => $row['privilegio']
+                'perfil' => $row['perfil']
             ));
         }      
     else if ($filas == 0){
