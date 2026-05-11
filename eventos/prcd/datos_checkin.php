@@ -8,12 +8,18 @@
         $evento = $_POST['evento'];
         $cadena = $_POST['c'];
 
-        $sql = "SELECT * FROM invitacion WHERE email = '$cadena'";
+        $sql = "SELECT * FROM invitacion WHERE codigo_unico = '$cadena'";
         $resultadoSql = $conn->query($sql);
         $rowQuery = $resultadoSql->fetch_assoc();
 
+        $tipoInvitacion = $rowQuery['tipoInvitacion'];
+        $sqlColor = "SELECT color FROM lista_invitados WHERE nombre = '$tipoInvitacion'";
+        $resultadoSqlColor = $conn->query($sqlColor);
+        $rowColor = $resultadoSqlColor->fetch_assoc();
+        $color = $rowColor['color'];
+
         echo'
-        <div style="margin-top:15px; padding:15px; background:#d4edda; border-radius:8px; border-left:4px solid #28a745;">
+        <div style="margin-top:15px; padding:15px; background:#'.$color.'; border-radius:8px; border-left:4px solid #28a745;">
             <h4 style="color:#155724; margin-bottom:10px;">¡Check-in exitoso!</h4>
             <p class="pb-3 mb-0 small lh-sm border-bottom">
               <strong class="d-block text-gray-dark">Nombre completo:</strong>

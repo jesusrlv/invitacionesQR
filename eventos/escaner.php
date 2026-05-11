@@ -455,6 +455,14 @@
                     var jsonData = JSON.parse(JSON.stringify(response));
                     
                     if (jsonData.success == "0") {
+                        $.ajax({
+                            type: "POST",
+                            url: "prcd/datos_checkin.php",
+                            data: { c: cleanCode, evento: evento },
+                            success: function(response) {
+                                $("#checkDiv").html(response);
+                            }
+                        });
                         Swal.fire({
                             icon: 'warning',
                             title: 'No se realizó el registro',
