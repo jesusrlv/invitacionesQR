@@ -85,7 +85,7 @@ $resultado = convertirAJPG($fileTmpLoc, $ruta_jpg, $calidad_jpg, $max_ancho, $ma
 
 if ($resultado) {
     echo "✅ Imagen convertida exitosamente a JPG<br>";
-    echo "📁 Ubicación: " . $ruta_jpg . "<br>";
+    // echo "📁 Ubicación: " . $ruta_jpg . "<br>";
     echo "📄 Archivo original: " . $fileName . "<br>";
     echo "📏 Dimensiones: " . $max_ancho . "x" . $max_alto . " (máximo)<br>";
     echo "🎨 Calidad: " . $calidad_jpg . "%<br>";

@@ -294,7 +294,7 @@
     /* Resultados */
     .resultado {
       font-size: 0.8rem;
-      margin-top: -0.5rem;
+      margin-top: 0.5rem;
       margin-bottom: 0.5rem;
     }
 
@@ -501,7 +501,7 @@
               <label class="form-label-custom"><i class="bi bi-joystick"></i> GamerTAG</label>
               <div class="input-group-modern d-flex">
                 <span class="input-group-text"><i class="bi bi-joystick"></i></span>
-                <input type="text" class="form-control" placeholder="Tu GamerTAG" id="gamerTag" disabled>
+                <input type="text" class="form-control" placeholder="Tu GamerTAG" id="email">
               </div>
               <div id="result-username" class="resultado text-start"></div>
             </div>
@@ -627,6 +627,19 @@
   <!-- SCRIPTS ORIGINALES CON MODAL PARA BÚSQUEDA -->
   <script src="QR/ajax_generate_code.js"></script>
   <script>
+      var tipoInvitacion = document.getElementById('tipoInvitacion').value;
+      var nombre = document.getElementById('name').value;
+      var municipios = document.getElementById('municipios').value;
+      var edad = document.getElementById('edad').value;
+      var fecha = document.getElementById('fecha').value;
+      var email = document.getElementById('email').value;
+
+      tipoInvitacion = "";
+      nombre = "";
+      municipios = "";
+      edad = "";
+      fecha = "";
+      email = "";
     // Función para mostrar modal con QR (similar al del registro)
     function mostrarModalQRConDescarga(textoQR, titulo = "QR encontrado") {
       // Crear un contenedor temporal para generar el QR
@@ -728,7 +741,7 @@
                 imageUrl: 'img/logo_injuventud_01.png',
                 imageHeight: 150,
                 imageAlt: 'INJUVENTUD',
-                title: 'Participante Gamer guardado',
+                title: 'Participante Gamer "' + email + '" guardado',
                 html: '<progress id="progressBar" value="0" max="100" style="width:300px;"></progress><small id="status"></small><p id="loaded_n_total"></p>',
                 didOpen: () => {
                   uploadFile(codigo);
@@ -737,6 +750,8 @@
                 },
                 confirmButtonColor: '#3085d6',
                 footer: 'INJUVENTUD'
+              }).then(() => {
+                location.reload();
               });
               document.getElementById('tipoInvitacion').disabled = true;
               document.getElementById('name').disabled = true;
@@ -961,6 +976,10 @@ function agregarLogoAlQR(canvas, logoUrl) {
       $('#email').on('blur', function() {
         var username = $(this).val();
         var dataString = 'username=' + username;
+        if(username.trim() === "") {
+          $('#result-username').html('<span style="color: red;" class="badge text-bg-danger"><i class="bi bi-x-circle-fill"></i> Ingresa un usuario válido.</span>');
+          return;
+        }
         $.ajax({
           type: "POST",
           url: "verificacion3.php",
